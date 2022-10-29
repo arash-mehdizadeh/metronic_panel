@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+
+.menu-link{
+    color: $bs-text-primary;
+    padding: 10px 25px;
+    align-items: center;
+    display: flex;
+    transition: 0.3s;
+    overflow-x: hidden;
+    align-items: center;
+    .menu-icon{
+        height: 19.5px;
+        width: 19.5px;
+        margin-left: 10px;
+    }
+    .menu-link-detail{
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        overflow-x: hidden;
+        white-space: nowrap;
+        width: 100%;
+        p{
+            overflow-x: hidden;
+
+        }
+    }
+    &:hover{
+        cursor: pointer;
+        background-color: #1b1b28;
+        color: $bs-white;
+    }
+    .hide{
+        
+        transition: .3s;
+        display: none;
+    }
+}

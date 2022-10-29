@@ -1,0 +1,115 @@
+@import './styles/variables';
+
+.app_container{
+    width: 100%;
+    height: auto;
+    font-weight: 600;
+    background-color: $bs-gray-100;
+    .container{
+        display: flex;
+        flex-direction: column;
+        transition: .4s;
+        .sidebar{ 
+            user-select: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            width: 265px;
+            background-color: $bs-sidebar-bg;
+            transition: .3s;
+            // overflow-x: hidden;
+            overflow:hidden;
+            &:hover{
+                overflow-y: auto;
+            }
+            &::-webkit-scrollbar {
+                width: 6px;
+                &-track {
+                    background-color: transparent;
+                }
+                &-thumb {
+                    background-color: #3F4254;
+                }
+                
+            }
+            .sidebar-header{
+                background-color: $bs-sidebar-bg-active;
+                display: flex;
+                justify-content: space-between;
+                padding: 25px 25px;
+                color: $bs-blue;
+                .menu-arrow{
+                    align-items: center;
+                    height: 24px;
+                    cursor: pointer;
+                    filter:grayscale(1);
+                    transition: .3s ease-in-out;
+                    // &:hover{
+                    //     filter: unset;
+                    //     rotate: 180deg;
+                    // }
+                }
+            }
+            .menu-container{
+            background-color: $bs-sidebar-bg;
+                
+            }
+        }
+        .active-fixed{
+            width: 265px;
+            transition: width .3s ease;
+        }
+        .active-arrow{
+            rotate: 180deg;
+            filter:unset !important;
+        }
+        .staible-menu:hover{
+            filter: unset !important;
+        }
+        // header of page
+        header{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
+            background-color: #fff;
+            .user-details{
+                padding: 10px 30px;
+                display: flex;
+                justify-content: end;
+                ul{
+                    display: flex;
+                    list-style: none;
+                    li{
+                        margin-right: 10px;
+                    }
+                }
+            }
+            .page-details{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 30px;
+                .filter-btn{
+                    display: flex;
+                    :last-child{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+
+    .component-container{
+            padding: 0 30px;
+            margin-top: 30px;
+        }
+        .main-full{
+            margin-right: 62px;
+            margin-left: 62px;
+        }
+    }
+}
