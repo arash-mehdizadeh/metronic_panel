@@ -1,5 +1,13 @@
 @import './styles/variables';
 
+
+@mixin primary-box {
+    padding: 20px   ;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+}
+
 .app_container{
     width: 100%;
     height: auto;
@@ -22,6 +30,7 @@
             transition: .3s;
             // overflow-x: hidden;
             overflow:hidden;
+            z-index: 2;
             &:hover{
                 overflow-y: auto;
             }
@@ -106,6 +115,96 @@
     .component-container{
             padding: 0 30px;
             margin-top: 30px;
+            .transaction-container{
+                display: grid;
+                grid-template-columns: 2fr 5fr;
+                column-gap: 30px;
+                .transaction-record-sidebox{
+                    display: flex;
+                    flex-direction: column;
+                    .transaction-detail-container{
+                        display: flex;
+                        flex-direction: column;
+                        border-radius:10px ;
+                        margin-bottom: 30px;
+                        // padding-bottom: 20px;
+                        background-color: #fff;
+                        .chart-container{
+                            p{
+                                background-color:#F1416C ;
+                                padding:10px 20px;
+                                color: #fff;
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                        }
+                        .transaction-buttons-container{
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            column-gap: 22.5px;
+                            padding: 20px;
+                            padding-bottom: 0;
+                            position: relative ;
+                            top: -60px;
+                            // display: flex;
+                            .primary-box{
+                                @include primary-box();
+                            }
+                            .box-1{
+                                background-color: $bs-light-success;
+                                color: $bs-green;
+                            }
+                            .box-2{
+                                background-color: $bs-light-warning;
+                                color: $bs-warning;
+                            }
+                        }
+                    }
+                    .transaction-filter-box{
+                        background-color: #fff;
+                        border-radius: 15px;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        padding: 20px 10px;
+                        #reset-btn{
+                            color: $bs-blue;
+                            font-weight: 700;
+                        }
+                        .filter-input-container{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            &:not(:last-child){
+                                margin-bottom: 20px;
+                            }
+                            p{
+                                margin-bottom: 10px;
+                            }
+                            .double-inputs-contanier{
+                                display: flex;
+                                :first-child{
+                                    margin-left: 20px;
+                                }
+                        }
+                        }
+
+                        // padding bottom 20px
+                        .input-handler{
+                            width: 100%;
+                            border-radius: 10px;
+                            padding: 10px 20px;
+                            outline: none;
+                            background-color: #eef3f7;
+                            border:  1px solid;
+                            border-color: #eef3f7;
+                            color: #5e6278;
+                            transition: color .2s ease,background-color .2s ease;
+                        }
+                    }
+                }
+            }
+                
         }
         .main-full{
             margin-right: 62px;
@@ -113,3 +212,9 @@
         }
     }
 }
+
+
+.apexcharts-grid , .apexcharts-xaxis ,.apexcharts-yaxis ,.apexcharts-data-labels{
+    display: none;
+}
+// #CB1C47

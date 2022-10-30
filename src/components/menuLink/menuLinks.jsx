@@ -8,7 +8,7 @@ const MenuLinks = (props) => {
                 {props.icon}
             </span>
             <div className={`menu-link-detail`}>
-                <span>{props.title}</span>
+                <p>{props.title}</p>
                 <Arrow2 />
             </div>
         </div>
