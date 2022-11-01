@@ -1,0 +1,60 @@
+@import '../../styles/variables';
+
+@mixin box() {
+    background-color:#fff ;
+    border-radius: 10px;
+    display: flex;
+}
+
+.modalBackDrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+}
+.adminPurchase-modal{
+    &--container{
+        @include box();
+        position: fixed;
+        top: 20%;
+        left: 5%;
+        width: 50%;
+        z-index: 10;
+        overflow: hidden; 
+        display: flex;
+        flex-direction: column;
+        padding: 15px 25px;
+    }
+
+    &--exit-btn{
+        cursor: pointer;
+    }
+    &--header-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    &--header{
+        display: flex;
+        justify-content: space-around;
+    }
+    &--info-container{
+        display: flex;
+        justify-content: space-around;
+    }
+    &--admin-info{
+        display: flex;
+        flex-direction: column;
+    }
+    &--service{
+        display: flex;
+        flex-direction: column;
+    }
+    &--period{
+        display: flex;
+        flex-direction: column;
+    }
+}

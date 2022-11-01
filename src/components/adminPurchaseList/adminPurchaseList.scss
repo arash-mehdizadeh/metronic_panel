@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.admin-list{
+    display: grid;
+    grid-template-columns: 1.75fr 2.3fr 1.5fr 2.3fr 2fr 1fr;
+    align-items: center;
+    padding: 10px 0;
+    &:nth-child(even){
+        background-color: $bs-gray-100;
+    }
+    // text-align: center;
+    .admin-detail{
+        display: flex;
+        flex-direction: column;
+        :first-child{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        :last-child{
+            color: $bs-gray-700;
+        }
+    }
+    .academy-name{
+        width:140px ;
+    }
+    .purchase-date{
+        div{
+            text-align: center;
+        }
+        display: flex;
+        flex-direction: column;
+    }
+    .purchase-detail{
+        display: flex;
+        justify-content: center;
+        color: $bs-blue;
+        cursor: pointer;
+    }
+}
+
+.status{
+    &-ok{
+        color: $bs-active-success;
+    }
+    &-failed{
+        color: $bs-active-warning;
+    }
+}
