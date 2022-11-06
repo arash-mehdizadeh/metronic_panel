@@ -1,0 +1,81 @@
+@import '../../../styles/variables';
+
+@mixin default-styles($inputWidth:100%){
+    width: $inputWidth;
+    border-radius: 10px;
+    padding: 10px 20px;
+    outline: none;
+    background-color: #eef3f7;
+    border:  1px solid;
+    border-color: #eef3f7;
+    color: #5e6278;
+    transition: color .2s ease,background-color .2s ease;
+}
+
+@mixin form-title {
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+.test-scoring--container{
+    display: flex;
+    flex-direction: column;
+    .return-btn--container{
+        display: flex;
+        justify-content: end;
+        #return-btn{
+            all: unset;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 15px;
+            background-color: $bs-blue;
+        }
+    }
+    .automatic-scoring--container{
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid $bs-gray-300;
+        padding: 10px 0;
+        form{
+            display: flex;
+            .form-auto-scoring--container{
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+    .scoring-table--container{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        .scoring-section{
+            display: flex;
+            flex-direction: column;
+            .scoring-table--header{
+                
+            }
+            .scoring-table{
+                padding: 10px;
+                ul{
+                    list-style: arabic-indic;
+                }
+            }
+        }
+    }
+}
+
+.form-title{
+    @include form-title();
+}
+.ml-6{
+    margin-left: 6px;
+}
+#return-btn{
+    all: unset;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: $bs-info;
+}

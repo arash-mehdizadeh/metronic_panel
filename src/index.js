@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import './index.scss';
+import AddingExam from './pages/addingExam/addingExam';
 
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -23,6 +24,11 @@ const Routing = () => {
                 <Route path="/superuser" element={
                     <Suspense fallback={<>loading...</>} >
                         <SuperUser/>
+                    </Suspense>
+                } />
+                <Route path="/add-exam" element={
+                    <Suspense fallback={<>loading...</>} >
+                        <AddingExam/>
                     </Suspense>
                 } />
             </Routes>

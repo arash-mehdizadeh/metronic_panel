@@ -211,14 +211,19 @@
         flex-direction: column;
         height: fit-content;
 
-        @include primary-box();
+        // @include primary-box();
+        .grid{
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-column-gap: 20px;
+        }
         .header-list{
             border-bottom: 1px solid $bs-gray-200;
             ul{
-                display: flex;
+                // display: flex;
                 list-style: none;
                 justify-content: space-between;
-                font-size: 14px;
+                font-size: 13px;
                 color: $bs-gray-800;
                 padding: 10px 0;
             }
@@ -244,3 +249,28 @@
     display: none;
 }
 // #CB1C47
+
+.active-primary-box{
+    @include primary-box();
+}
+.homework-list-container{
+    ol{
+
+        .homework-list-container{
+            // display: list-item;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-column-gap: 20px;
+            // justify-content: space-between;
+            padding: 10px 0;
+            padding-right: 20px;
+
+        }
+    }
+}
+
+.deactive-relative-box{
+    position:static !important;
+    top: 0!important;
+    padding: 20px !important;
+}
