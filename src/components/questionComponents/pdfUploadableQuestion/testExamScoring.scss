@@ -30,14 +30,14 @@
             color: #fff;
             padding: 10px 15px;
             border-radius: 15px;
-            background-color: $bs-blue;
+            background-color: $bs-pink;
         }
     }
     .automatic-scoring--container{
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid $bs-gray-300;
-        padding: 10px 0;
+        padding:  0 0 15px 0;
         form{
             display: flex;
             .form-auto-scoring--container{
@@ -60,6 +60,27 @@
                 padding: 10px;
                 ul{
                     list-style: arabic-indic;
+                    display: grid;
+                    grid-column-gap: 40px;
+                    grid-template-columns: repeat(5,1fr); 
+                    // grid-template-rows: repeat(5,1fr); // if wanna get down
+                    // grid-template-rows: auto auto auto auto auto; 
+                    .adding-test-score--container{
+                        padding: 12.5px;
+                        padding-right: 0;
+                        #adding-test-score--btn{
+                            all: unset;
+                            justify-content: center;
+                            width: 60px;    
+                            display: flex;
+                            padding: 10px 10px;
+                            background-color: $bs-success;
+                            border-radius: 15px;
+                            color: #fff;
+                            cursor: pointer;
+                        }
+                    }
+                    
                 }
             }
         }
@@ -71,6 +92,7 @@
 }
 .ml-6{
     margin-left: 6px;
+    margin-bottom: 0 !important;
 }
 #return-btn{
     all: unset;

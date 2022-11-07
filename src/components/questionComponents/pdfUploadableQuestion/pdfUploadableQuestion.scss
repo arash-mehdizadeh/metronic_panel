@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+
+@mixin default-styles($inputWidth:100%){
+    width: $inputWidth;
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: transparent;
+    border:  1px solid;
+    border-color: $bs-gray-600;
+    color: #5e6278;
+    transition: color .2s ease,background-color .2s ease;
+}
+
+.test-formScore--list{
+    width: fit-content;
+    padding: 12.5px ;
+    .test-formScore--container{
+        display: flex;
+        align-items: center;
+        .form-input--secondary{
+            @include default-styles(60px);
+        }
+        span{
+            margin-right: 10px;
+            cursor: pointer;
+            color: $bs-red;
+        }
+    }
+    &:not(:nth-child(5n)){
+        border-left: 1px solid black;
+    }
+}

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 
-import MenuLinks from '../../components/menuLink/menuLinks';
+import MenuLinks from '../../../components/menuLink/menuLinks';
 
-import { ReactComponent as ArrowMenu } from '../../assets/icons/arrows/arr079.svg';
-import { ReactComponent as DashboardSvg } from '../../assets/icons/menu/dashboard.svg';
-import { ReactComponent as ChartIcon } from '../../assets/icons/generals/chart.svg';
-import { ReactComponent as Add } from '../../assets/icons/generals/add.svg';
+import { ReactComponent as ArrowMenu } from '../../../assets/icons/arrows/arr079.svg';
+import { ReactComponent as DashboardSvg } from '../../../assets/icons/menu/dashboard.svg';
+import { ReactComponent as ChartIcon } from '../../../assets/icons/generals/chart.svg';
+import { ReactComponent as Add } from '../../../assets/icons/generals/add.svg'
 
-import '../../App.scss';
+import AddingExamForm1 from '../../../components/addingExamForm/addingExamForm1';
 
+import '../../../App.scss';
 
-const SuperUser = () => {
+const ExamFormDetail = () => {
+
     const [hoverMenu, setHoverMenu] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
     const openMenu = () => {
@@ -19,6 +21,7 @@ const SuperUser = () => {
     const closeMenu = () => {
         document.getElementById("sidebar").style.width = "75px";
     }
+
     return (
         <div className="app_container" >
             <div className="container" style={{ paddingRight: activeMenu ? "75px" : "265px" }}>
@@ -91,70 +94,10 @@ const SuperUser = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='transaction-filter-box'>
-                                <div className='filter-input-container'>
-                                    <p>جستجو :</p>
-                                    <div>
-                                        <input type="text" className='input-handler' placeholder=' جستوجو آزمون با نام یا لینک ...' />
-                                    </div>
-                                </div>
-                                {/* <div className='filter-input-container'>
-                                <p>فیلتر ها :</p>
-                                <div className='double-inputs-contanier'>
-                                    <input type="text" className='input-handler' placeholder='از تاریخ' />
-                                    <input type="text" className='input-handler' placeholder='تا تاریخ' />
-                                </div>
-                            </div>
-                            <div className='filter-input-container'>
-                                <input type="text" className='input-handler' placeholder='وضعیت پرداخت' />
-                            </div> */}
-                                <p id='reset-btn'>حذف فیلتر ها</p>
-                            </div>
+
                         </div>
                         <div className="transaction-list-container active-primary-box">
-                            <div className='header-list'>
-                                <ul className='grid'>
-                                    <li>#</li>
-                                    <li>عنوان آزمون</li>
-                                    <li>نوع آزمون</li>
-                                    <li>تاریخ برگزاری</li>
-                                    <li>سوالات</li>
-                                    <li>کاربران آزمون</li>
-                                    <li>لینک کاربری</li>
-                                    <li>لینک مهمان</li>
-                                    <li>احراز هویت مهمان</li>
-                                    <li>وضعیت</li>
-                                    <li>نتایج</li>
-                                    <li>عملیات</li>
-                                </ul>
-                            </div>
-                            <div className='homework-list-container'>
-                                <ol>
-                                    <li className='homework-list'>
-                                        <div className='homework-list-container'>
-                                            <p>مهندسی روانشناسی تکنیکال</p>
-                                            <p>تستی 100 گزینه ای</p>
-                                            <div>
-                                                <p>56/11/23</p>
-                                                <p>18:00</p>
-                                            </div>
-                                            <p>ویرایش</p>
-                                            <p>حذف و اضافه</p>
-                                            <p>کپی لینک</p>
-                                            <p>کپی لینک</p>
-                                            <p>مشاهده</p>
-                                            <p>فعال</p>
-                                            <p>مشاهده</p>
-                                            <div>
-                                                <p>پیشنمایش</p>
-                                                <p>see edit msg</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </div>
-                            {/* <AddingExamForm1/> */}
-                            {/* <TestExamScoring /> */}
+                            <AddingExamForm1 />
                         </div>
                     </div>
                 </main>
@@ -163,4 +106,4 @@ const SuperUser = () => {
     )
 }
 
-export default SuperUser
+export default ExamFormDetail
