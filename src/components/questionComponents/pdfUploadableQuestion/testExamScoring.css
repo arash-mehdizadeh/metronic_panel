@@ -1,0 +1,205 @@
+:export {
+  bs-text-primary: #9899ac;
+  bs-light-primary: #F1FAFF;
+  bs-active-primary: #0095E8;
+  bs-light-success: #E8FFF3;
+  bs-active-success: #47BE7D;
+  bs-light-info: #F8F5FF;
+  bs-active-info: #5014D0;
+  bs-light-warning: #FFF8DD;
+  bs-active-warning: #F1BC00;
+  bs-light-danger: #FFF5F8;
+  bs-active-danger: #D9214E;
+  bs-light-dark: #EFF2F5;
+  bs-active-dark: #131628;
+  bs-gray-100: #F5F8FA;
+  bs-gray-200: #EFF2F5;
+  bs-gray-300: #E4E6EF;
+  bs-gray-400: #B5B5C3;
+  bs-gray-500: #A1A5B7;
+  bs-gray-600: #7E8299;
+  bs-gray-700: #5E6278;
+  bs-gray-800: #3F4254;
+  bs-gray-900: #181C32;
+  bs-xs: 0;
+  bs-sm: 576px;
+  bs-md: 768px;
+  bs-lg: 992px;
+  bs-xl: 1200px;
+  bs-xxl: 1400px;
+  bs-border-color: #EFF2F5;
+  bs-border-dashed-color: #E4E6EF;
+  bs-blue: #009ef6;
+  bs-indigo: #6610f2;
+  bs-purple: #6f42c1;
+  bs-pink: #d63384;
+  bs-red: #dc3545;
+  bs-orange: #fd7e14;
+  bs-yellow: #ffc107;
+  bs-green: #198754;
+  bs-teal: #20c997;
+  bs-cyan: #0dcaf0;
+  bs-gray: #7E8299;
+  bs-gray-dar: #3F4254;
+  bs-white: #ffffff;
+  bs-light: #F5F8FA;
+  bs-primary: #009EF7;
+  bs-secondary: #E4E6EF;
+  bs-success: #50CD89;
+  bs-info: #7239EA;
+  bs-warning: #FFC700;
+  bs-danger: #F1416C;
+  bs-dark: #181C32;
+  bs-white-rgb: 255, 255, 255;
+  bs-light-rgb: 245, 248, 250;
+  bs-primary-rgb: 0, 158, 247;
+  bs-secondary-rgb: 228, 230, 239;
+  bs-success-rgb: 80, 205, 137;
+  bs-info-rgb: 114, 57, 234;
+  bs-warning-rgb: 255, 199, 0;
+  bs-danger-rgb: 241, 65, 108;
+  bs-dark-rgb: 24, 28, 50;
+  bs-white-rgb: 255, 255, 255;
+  bs-black-rgb: 0, 0, 0;
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-sidebar-bg: #1e1e2d;
+}
+
+.test-scoring--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.test-scoring--container .return-btn--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.test-scoring--container .return-btn--container #return-btn {
+  all: unset;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: #d63384;
+}
+
+.test-scoring--container .automatic-scoring--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid #E4E6EF;
+  padding: 0 0 15px 0;
+}
+
+.test-scoring--container .automatic-scoring--container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.test-scoring--container .automatic-scoring--container form .form-auto-scoring--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.test-scoring--container .scoring-table--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+}
+
+.test-scoring--container .scoring-table--container .scoring-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.test-scoring--container .scoring-table--container .scoring-section .scoring-table {
+  padding: 10px;
+}
+
+.test-scoring--container .scoring-table--container .scoring-section .scoring-table ul {
+  list-style: arabic-indic;
+  display: -ms-grid;
+  display: grid;
+  grid-column-gap: 40px;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+}
+
+.test-scoring--container .scoring-table--container .scoring-section .scoring-table ul .adding-test-score--container {
+  padding: 12.5px;
+  padding-right: 0;
+}
+
+.test-scoring--container .scoring-table--container .scoring-section .scoring-table ul .adding-test-score--container #adding-test-score--btn {
+  all: unset;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 10px;
+  background-color: #50CD89;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.test-scoring--container .scoring-table--container .scoring-section .scoring-table .test--table {
+  grid-column-gap: 0;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.form-title {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ml-6 {
+  margin-left: 6px;
+  margin-bottom: 0 !important;
+}
+
+#return-btn {
+  all: unset;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: #7239EA;
+}
+/*# sourceMappingURL=testExamScoring.css.map */

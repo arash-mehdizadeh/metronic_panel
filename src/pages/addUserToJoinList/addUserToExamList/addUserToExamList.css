@@ -1,0 +1,24 @@
+.added-user-list--container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.added-user-list--container > li {
+  border-bottom: 1px solid #000;
+}
+
+.added-user-list--container li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.added-user-list--container li:nth-child(odd) {
+  border-left: 1px solid #000;
+}
+/*# sourceMappingURL=addUserToExamList.css.map */

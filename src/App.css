@@ -1,0 +1,448 @@
+:export {
+  bs-text-primary: #9899ac;
+  bs-light-primary: #F1FAFF;
+  bs-active-primary: #0095E8;
+  bs-light-success: #E8FFF3;
+  bs-active-success: #47BE7D;
+  bs-light-info: #F8F5FF;
+  bs-active-info: #5014D0;
+  bs-light-warning: #FFF8DD;
+  bs-active-warning: #F1BC00;
+  bs-light-danger: #FFF5F8;
+  bs-active-danger: #D9214E;
+  bs-light-dark: #EFF2F5;
+  bs-active-dark: #131628;
+  bs-gray-100: #F5F8FA;
+  bs-gray-200: #EFF2F5;
+  bs-gray-300: #E4E6EF;
+  bs-gray-400: #B5B5C3;
+  bs-gray-500: #A1A5B7;
+  bs-gray-600: #7E8299;
+  bs-gray-700: #5E6278;
+  bs-gray-800: #3F4254;
+  bs-gray-900: #181C32;
+  bs-xs: 0;
+  bs-sm: 576px;
+  bs-md: 768px;
+  bs-lg: 992px;
+  bs-xl: 1200px;
+  bs-xxl: 1400px;
+  bs-border-color: #EFF2F5;
+  bs-border-dashed-color: #E4E6EF;
+  bs-blue: #009ef6;
+  bs-indigo: #6610f2;
+  bs-purple: #6f42c1;
+  bs-pink: #d63384;
+  bs-red: #dc3545;
+  bs-orange: #fd7e14;
+  bs-yellow: #ffc107;
+  bs-green: #198754;
+  bs-teal: #20c997;
+  bs-cyan: #0dcaf0;
+  bs-gray: #7E8299;
+  bs-gray-dar: #3F4254;
+  bs-white: #ffffff;
+  bs-light: #F5F8FA;
+  bs-primary: #009EF7;
+  bs-secondary: #E4E6EF;
+  bs-success: #50CD89;
+  bs-info: #7239EA;
+  bs-warning: #FFC700;
+  bs-danger: #F1416C;
+  bs-dark: #181C32;
+  bs-white-rgb: 255, 255, 255;
+  bs-light-rgb: 245, 248, 250;
+  bs-primary-rgb: 0, 158, 247;
+  bs-secondary-rgb: 228, 230, 239;
+  bs-success-rgb: 80, 205, 137;
+  bs-info-rgb: 114, 57, 234;
+  bs-warning-rgb: 255, 199, 0;
+  bs-danger-rgb: 241, 65, 108;
+  bs-dark-rgb: 24, 28, 50;
+  bs-white-rgb: 255, 255, 255;
+  bs-black-rgb: 0, 0, 0;
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-sidebar-bg: #1e1e2d;
+}
+
+.app_container {
+  width: 100%;
+  height: auto;
+  font-weight: 600;
+  background-color: #F5F8FA;
+}
+
+.app_container .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.app_container .container .sidebar {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 265px;
+  background-color: #1e1e2d;
+  -webkit-transition: .3s;
+  transition: .3s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.app_container .container .sidebar:hover {
+  overflow-y: auto;
+}
+
+.app_container .container .sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.app_container .container .sidebar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.app_container .container .sidebar::-webkit-scrollbar-thumb {
+  background-color: #3F4254;
+}
+
+.app_container .container .sidebar .sidebar-header {
+  background-color: #1a1a27;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 25px 25px;
+  color: #009ef6;
+}
+
+.app_container .container .sidebar .sidebar-header .menu-arrow {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 24px;
+  cursor: pointer;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.app_container .container .sidebar .menu-container {
+  background-color: #1e1e2d;
+}
+
+.app_container .container .active-fixed {
+  width: 265px;
+  -webkit-transition: width .3s ease;
+  transition: width .3s ease;
+}
+
+.app_container .container .active-arrow {
+  rotate: 180deg;
+  -webkit-filter: unset !important;
+          filter: unset !important;
+}
+
+.app_container .container .staible-menu:hover {
+  -webkit-filter: unset !important;
+          filter: unset !important;
+}
+
+.app_container .container header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
+          box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
+  background-color: #fff;
+}
+
+.app_container .container header .user-details {
+  padding: 10px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.app_container .container header .user-details ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.app_container .container header .user-details ul li {
+  margin-right: 10px;
+}
+
+.app_container .container header .page-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 30px;
+}
+
+.app_container .container header .page-details .filter-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.app_container .container header .page-details .filter-btn :last-child {
+  margin-right: 10px;
+}
+
+.app_container .container .component-container {
+  padding: 0 30px;
+  margin: 30px 0;
+}
+
+.app_container .container .component-container .transaction-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 5fr;
+      grid-template-columns: 2fr 5fr;
+  -webkit-column-gap: 30px;
+          column-gap: 30px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container .chart-container p {
+  background-color: #F1416C;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container .transaction-buttons-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 22.5px;
+          column-gap: 22.5px;
+  padding: 20px;
+  padding-bottom: 0;
+  position: relative;
+  top: -60px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container .transaction-buttons-container .primary-box {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container .transaction-buttons-container .box-1 {
+  background-color: #E8FFF3;
+  color: #198754;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-detail-container .transaction-buttons-container .box-2 {
+  background-color: #FFF8DD;
+  color: #FFC700;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box {
+  background-color: #fff;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px 10px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box #reset-btn {
+  color: #009ef6;
+  font-weight: 700;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .filter-input-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .filter-input-container:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .filter-input-container p {
+  margin-bottom: 10px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .filter-input-container .double-inputs-contanier {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .filter-input-container .double-inputs-contanier :first-child {
+  margin-left: 20px;
+}
+
+.app_container .container .component-container .transaction-container .transaction-record-sidebox .transaction-filter-box .input-handler {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  outline: none;
+  background-color: #eef3f7;
+  border: 1px solid;
+  border-color: #eef3f7;
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+}
+
+.app_container .container .transaction-list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.app_container .container .transaction-list-container .grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5px (55px)[11];
+      grid-template-columns: 5px repeat(11, 55px);
+  grid-column-gap: 20px;
+}
+
+.app_container .container .transaction-list-container .header-list {
+  border-bottom: 1px solid #EFF2F5;
+}
+
+.app_container .container .transaction-list-container .header-list ul {
+  list-style: none;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 13px;
+  color: #3F4254;
+  padding: 10px 0;
+}
+
+.app_container .container .transaction-list-container .admin-list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.app_container .container .main-full {
+  margin-right: 62px;
+  margin-left: 62px;
+}
+
+.chart-container :is(.apexcharts-grid, .apexcharts-xaxis, .apexcharts-yaxis, .apexcharts-data-labels) {
+  display: none;
+}
+
+.active-primary-box {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.homework-list-container ol .homework-list-container {
+  display: -ms-grid !important;
+  display: grid !important;
+  -ms-grid-columns: 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px;
+      grid-template-columns: 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px;
+  grid-column-gap: 20px;
+  padding: 10px 0;
+  padding-right: 20px;
+}
+
+.deactive-relative-box {
+  position: static !important;
+  top: 0 !important;
+  padding: 20px !important;
+}
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,2BAA2B,CAAA;EACvB,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAa;CAWvC;;AAbD,AAGI,2BAHuB,GAGpB,EAAE,CAAC;EACF,aAAa,EAAE,cAAc;CAChC;;AALL,AAMI,2BANuB,CAMvB,EAAE,CAAA;EACE,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAIjC;;AAZL,AASQ,2BATmB,CAMvB,EAAE,AAGG,UAAW,CAAA,GAAG,EAAC;EACZ,WAAW,EAAE,cAAc;CAC9B",
+    "sources": [
+        "addUserToExamList.scss"
+    ],
+    "names": [],
+    "file": "addUserToExamList.css"
+}

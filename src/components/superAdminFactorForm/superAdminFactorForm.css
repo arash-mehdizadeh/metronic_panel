@@ -1,0 +1,281 @@
+:export {
+  bs-text-primary: #9899ac;
+  bs-light-primary: #F1FAFF;
+  bs-active-primary: #0095E8;
+  bs-light-success: #E8FFF3;
+  bs-active-success: #47BE7D;
+  bs-light-info: #F8F5FF;
+  bs-active-info: #5014D0;
+  bs-light-warning: #FFF8DD;
+  bs-active-warning: #F1BC00;
+  bs-light-danger: #FFF5F8;
+  bs-active-danger: #D9214E;
+  bs-light-dark: #EFF2F5;
+  bs-active-dark: #131628;
+  bs-gray-100: #F5F8FA;
+  bs-gray-200: #EFF2F5;
+  bs-gray-300: #E4E6EF;
+  bs-gray-400: #B5B5C3;
+  bs-gray-500: #A1A5B7;
+  bs-gray-600: #7E8299;
+  bs-gray-700: #5E6278;
+  bs-gray-800: #3F4254;
+  bs-gray-900: #181C32;
+  bs-xs: 0;
+  bs-sm: 576px;
+  bs-md: 768px;
+  bs-lg: 992px;
+  bs-xl: 1200px;
+  bs-xxl: 1400px;
+  bs-border-color: #EFF2F5;
+  bs-border-dashed-color: #E4E6EF;
+  bs-blue: #009ef6;
+  bs-indigo: #6610f2;
+  bs-purple: #6f42c1;
+  bs-pink: #d63384;
+  bs-red: #dc3545;
+  bs-orange: #fd7e14;
+  bs-yellow: #ffc107;
+  bs-green: #198754;
+  bs-teal: #20c997;
+  bs-cyan: #0dcaf0;
+  bs-gray: #7E8299;
+  bs-gray-dar: #3F4254;
+  bs-white: #ffffff;
+  bs-light: #F5F8FA;
+  bs-primary: #009EF7;
+  bs-secondary: #E4E6EF;
+  bs-success: #50CD89;
+  bs-info: #7239EA;
+  bs-warning: #FFC700;
+  bs-danger: #F1416C;
+  bs-dark: #181C32;
+  bs-white-rgb: 255, 255, 255;
+  bs-light-rgb: 245, 248, 250;
+  bs-primary-rgb: 0, 158, 247;
+  bs-secondary-rgb: 228, 230, 239;
+  bs-success-rgb: 80, 205, 137;
+  bs-info-rgb: 114, 57, 234;
+  bs-warning-rgb: 255, 199, 0;
+  bs-danger-rgb: 241, 65, 108;
+  bs-dark-rgb: 24, 28, 50;
+  bs-white-rgb: 255, 255, 255;
+  bs-black-rgb: 0, 0, 0;
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  bs-body-color: #181C32;
+  bs-body-bg: #ffffff;
+  bs-sidebar-bg: #1e1e2d;
+}
+
+.superAdmin-factorForm--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 26px;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .form-title {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .factorForm-input {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  outline: none;
+  background-color: #eef3f7;
+  border: 1px solid;
+  border-color: #eef3f7;
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .inputRadio--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .inputRadio--container .inputRadio-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .inputRadio--container .inputRadio-title .form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-left: 6px;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .inputRadio--container .inputRadio-title .form-check-input:checked + label {
+  background-color: #009ef6;
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .buyingInfo--section .factorForm-input--container .inputRadio--container .inputRadio-title .form-check-input:checked {
+  background-image: url("../../assets/icons/shapes/circle.svg");
+}
+
+.superAdmin-factorForm--container .factorForm-buyingInfo--container .receipt--section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section .form-title {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section .form-option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section .form-option .factorForm-input {
+  margin-left: 20px;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section .form-option .factorForm-input {
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  outline: none;
+  background-color: #eef3f7;
+  border: 1px solid;
+  border-color: #eef3f7;
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+}
+
+.superAdmin-factorForm--container .factorForm-serviceOptions--container .form-serviceOption--section .form-option .factorForm-period {
+  width: 20%;
+}
+
+.form-checkbox--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.form-checkbox--container .form-checkbox-input {
+  margin-left: 6px;
+  width: 15px;
+  height: 15px;
+}
+
+#form-add-button--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  margin: 20px 0 0 20px;
+}
+
+#form-add-button--container #form-add-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #009ef6;
+  font-size: 14px;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: none;
+}
+
+.datePicker--container input {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  outline: none;
+  background-color: #eef3f7;
+  border: 1px solid;
+  border-color: #eef3f7;
+  color: #5e6278;
+  -webkit-transition: color .2s ease,background-color .2s ease;
+  transition: color .2s ease,background-color .2s ease;
+  cursor: pointer;
+}
+/*# sourceMappingURL=superAdminFactorForm.css.map */
