@@ -14,7 +14,7 @@ const AddingExamForm1 = () => {
 
     const { register, reset, setValue, handleSubmit } = useForm({
         defaultValues: useMemo(() => {
-            console.log("User has changed");
+            // console.log("User has changed");
             return user ;
         }, [])
     });
@@ -43,7 +43,7 @@ const AddingExamForm1 = () => {
                         <p className='form-title'>نوع آزمون :</p>
                         <div className='radio--container'>
                             <label className='input-radio-title'>
-                                <input className='form-check-input custom-checkbox' {...register("type", { value: true })} value="test" type="radio" />
+                                <input className='form-check-input custom-checkbox' {...register("type")} value="test" type="radio" />
                                 تستی
                             </label>
                             <label className='input-radio-title'>

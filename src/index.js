@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import './index.scss';
-import AddingExam from './pages/addingExam/addingExam';
-import PdfUploadableExam from './pages/addingExam/examGenerator/pdfUploadableExam';
-import CustomMultiChoiceExam from './pages/addingExam/examGenerator/customMultiChoiceExam';
-import CustomDescriptiveExam from './pages/addingExam/examGenerator/customDescriptiveExam';
-import TestExam from './pages/addingExam/examGenerator/testExam';
-import ExamFormDetail from './pages/addingExam/examFormDetail/examFormDetail';
+import AddExamList from './pages/addExam/addExamList';
+import PdfUploadableExam from './pages/addExam/examGenerator/pdfUploadableExam';
+import CustomMultiChoiceExam from './pages/addExam/examGenerator/customMultiChoiceExam';
+import CustomDescriptiveExam from './pages/addExam/examGenerator/customDescriptiveExam';
+import TestExam from './pages/addExam/examGenerator/testExam';
+import ExamFormDetail from './pages/addExam/examFormDetail/examFormDetail';
+import AddUserToExamList from './pages/addUserToJoinList/addUserToExamList/addUserToExamList';
 
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -33,7 +34,7 @@ const Routing = () => {
                 } />
                 <Route path="/add-exam" element={
                     <Suspense fallback={<>loading...</>} >
-                        <AddingExam/>
+                        <AddExamList/>
                     </Suspense>
                 } />
                 <Route path="/add-exam/exam-form" element={
@@ -46,7 +47,7 @@ const Routing = () => {
                         <PdfUploadableExam/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/multichoiceExamGenerator" element={
+                <Route path="/add-exam/customMultichoiceExamGenerator" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomMultiChoiceExam/>
                     </Suspense>
@@ -59,6 +60,11 @@ const Routing = () => {
                 <Route path="/add-exam/descriptiveExamGenerator" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomDescriptiveExam/>
+                    </Suspense>
+                } />
+                <Route path="/add-exam/addUsersToJoinExam" element={
+                    <Suspense fallback={<>loading...</>} >
+                        <AddUserToExamList />
                     </Suspense>
                 } />
             </Routes>

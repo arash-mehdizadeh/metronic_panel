@@ -1,0 +1,67 @@
+@import '../../../styles/variables';
+
+@mixin border($border:$bs-gray-600) {
+    border:1px solid $border;
+}
+
+@mixin test-button-option {
+    color:$bs-gray-700;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    width: 40px;
+    height: 40px;
+    @include border();
+    border-radius: 100%;
+    margin: 5px;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+
+@mixin default-styles($inputWidth:100%){
+    width: $inputWidth;
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: transparent;
+    border:  1px solid;
+    border-color: $bs-gray-600;
+    color: #5e6278;
+    transition: color .2s ease,background-color .2s ease;
+}
+
+
+.test-form-score--list{
+    width: fit-content;
+    padding: 12.5px ;
+    .test-form-score--container{
+        display: flex;
+        align-items: center;
+        .form-input--secondary{
+            @include default-styles(60px);
+        }
+        span{
+            margin-right: 10px;
+            cursor: pointer;
+            color: $bs-red;
+        }
+    }
+    &:not(:nth-child(2n)){
+        border-left: 1px solid black;
+    }
+}
+.test-options--container{
+    display: flex;
+    margin-left: 16px;
+    .test-option--button{
+        @include test-button-option();
+    }
+}
+
+.active-option-btn{
+    background-color: $bs-cyan;
+    color: #000 !important;
+}

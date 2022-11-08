@@ -1,0 +1,14 @@
+.added-user-list--container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    & >li {
+        border-bottom: 1px solid #000;
+    }
+    li{
+        display: flex;
+        justify-content: space-between;
+        &:nth-child(odd){
+            border-left: 1px solid #000;
+        }
+    }
+}

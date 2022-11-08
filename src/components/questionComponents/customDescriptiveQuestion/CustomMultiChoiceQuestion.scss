@@ -1,0 +1,98 @@
+@use '../../../styles/mixins.module.scss';
+@import '../../../styles/variables';
+
+.input--score{
+    @include mixins.secondary-input-style();
+    margin-left: 6px;
+    width: 75px;
+    @include mixins.border($bs-gray-400);
+}
+
+.active-correct-answer--title{
+    color: $bs-blue;
+}
+
+.input-title{
+    @include mixins.form-title();
+}
+.input--textarea{
+    @include mixins.default-input-style();
+    padding: 10px   ;
+    background-color: #fff;
+    height: 100px;
+}
+
+.input--answer-option{
+    @include mixins.default-input-style();
+    background-color: #fff;
+    margin: 0 10px;
+}
+
+#submitBtn{
+    @include mixins.button($bs-teal,#fff);
+    
+}
+
+.descriptive-question{
+    display: flex;
+    margin: 15px 0;
+    &--container{
+        display: flex;
+        flex-direction: column;
+        .add-question--button{
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .question-scoring--container{
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px;
+            .descriptive-scoring--container{
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    &--detail{
+        background-color: $bs-gray-300;
+        width: 100%;
+        padding: 20px;
+        border-radius: 15px;
+        .multichoice-question{
+            display: flex;
+            align-items: center;
+            margin: 7.5px 0;
+            &--container{
+                display: flex;
+                flex-direction: column;
+            }
+            .currect-answer--radio-btn{
+                display: flex;
+                align-items: center;
+                .input--radio-btn{
+                    @include mixins.checkbox();
+                }
+            }
+        }
+    }
+    &--upload-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px 0;
+        .primary-box{
+            @include mixins.primary-box();
+            width: 150px;
+            background-color: $bs-purple;  
+            color: #fff;
+        }
+        
+    }
+    &--submitBtn{
+        display: flex;
+        justify-content: end;
+    }
+
+}

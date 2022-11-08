@@ -1,27 +1,38 @@
 
-import { useState, useMemo ,useEffect} from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler }) => {
+import './testQuestion.scss';
+
+const TestInput = ({ id, score, option ,deleteHandler, updateScoreHandler ,updateOptionHandler }) => {
 
 
     const [value, setValue] = useState(score);
+    const [optionBtn, setOptionBtn] = useState(option);
 
+    const handleOptionChange = (btnID) => {
+        setOptionBtn(btnID);
+    };
     const handleOnChange = (event) => {
-        event.preventDefault()
         setValue(event.target.value);
     };
 
     useEffect(() => {
-        const timeoutId = setTimeout(() => updateScoreHandler(id,value), 1000);
+        const timeoutId = setTimeout(() => updateScoreHandler(id, value),updateOptionHandler(id,optionBtn), 1000);
         return () => clearTimeout(timeoutId);
     }, [value]);
 
 
 
     return (
-        <li className='test-formScore--list' key={id}>
-            <div className='test-formScore--container'>
+        <li className='test-form-score--list' key={id}>
+            <div className='test-form-score--container'>
+                <div className='test-options--container'>
+                    <div onClick={() => handleOptionChange(1) } className={`test-option--button ${ optionBtn == 1 ?"active-option-btn" : "" } `}>۱</div>
+                    <div onClick={() => handleOptionChange(2) } className={`test-option--button ${ optionBtn == 2 ?"active-option-btn" : "" } `}>۲</div>
+                    <div onClick={() => handleOptionChange(3) } className={`test-option--button ${ optionBtn == 3 ?"active-option-btn" : "" } `}>۳</div>
+                    <div onClick={() => handleOptionChange(4) } className={`test-option--button ${ optionBtn == 4 ?"active-option-btn" : "" } `}>٤</div>
+                </div>
                 <input value={value} onChange={handleOnChange} type="number" className='form-input--secondary' />
                 <span onClick={() => deleteHandler(id)}>X</span>
             </div>
@@ -53,14 +64,26 @@ const TestQuestion = () => {
         });
 
         updatedData[0].score = +event;
-        
+
         updatedList.push(updatedData[0])
         setScoreData(updatedList)
-        // console.log(updatedData);
-        // setScoreData(prev => [...prev ,updatedData])
-        // console.log(scoreData);
-        // const updatedData = data[id].score = event;
-        // setScoreData(updatedData);
+
+    };
+
+
+    const updateOptionHandler = (idScore, optionValue) => {
+        var updatedData = scoreData.filter((elem) => {
+            return idScore === elem.id;
+        });
+        var updatedList = scoreData.filter((elem) => {
+            return idScore !== elem.id;
+        });
+
+        updatedData[0].option = +optionValue;
+
+        updatedList.push(updatedData[0])
+        setScoreData(updatedList)
+
     };
 
 
@@ -71,27 +94,29 @@ const TestQuestion = () => {
         }, [])
     });
     const increaseNum = () => {
-        setNum(prev => prev+1);
+        setNum(prev => prev + 1);
     }
     const addSingleScore = () => {
         console.log(scoreData);
         setScoreData(arr => [...arr, {
             id: num,
+            option:0,
             score: 0
         }
-    ])
-    setNum(prev => prev+1)
+        ])
+        setNum(prev => prev + 1)
     }
 
     const manualSubmit = (data) => {
-        
+
         var i = 0;
         // var dataScoreList = [];
-        for ( i = 0; i < +data.questionAmount ;i++) {
+        for (i = 0; i < +data.questionAmount; i++) {
             increaseNum(); // apply change in here
 
             setScoreData(arr => [...arr, {
                 id: num,
+                option:0,
                 score: +data.questionScore
             }
             ]);
@@ -130,10 +155,13 @@ const TestQuestion = () => {
                 <div className='scoring-section'>
                     <div className='scoring-table-header form-title' style={{ margin: 0 }}>#  بارم</div>
                     <div className='scoring-table'>
-                        <ul>
+                        <ul className='test--table'>
                             {
                                 scoreData.map(el => (
-                                    <PdfUploadableInput id={el.id} score={el.score} updateScoreHandler={updateScoreHandler} deleteHandler={deleteHandler} />
+                                    <TestInput id={el.id} option={el.option} score={el.score} 
+                                    updateScoreHandler={updateScoreHandler} deleteHandler={deleteHandler}
+                                    updateOptionHandler={updateOptionHandler}
+                                    />
                                 ))
                             }
                             <div className='adding-test-score--container'><button id='adding-test-score--btn' onClick={() => addSingleScore()}>+ اضافه </button></div>
