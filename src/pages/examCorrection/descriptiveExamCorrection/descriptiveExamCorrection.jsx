@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
+import { DescriptiveCorrectionComponent } from '../../../components/correctionComponents/descriptiveCorrectionComponent';
 import MenuLinks from '../../../components/menuLink/menuLinks';
 
 import { ReactComponent as ArrowMenu } from '../../../assets/icons/arrows/arr079.svg';
 import { ReactComponent as DashboardSvg } from '../../../assets/icons/menu/dashboard.svg';
-import { ReactComponent as ChartIcon } from '../../../assets/icons/generals/chart.svg';
-import { ReactComponent as Add } from '../../../assets/icons/generals/add.svg';
 
-import './addUserToExamList.scss'
+import '../../../App.scss';
 
-const AddUserToExamList = () => {
+
+const DescriptiveExamCorrection = () => {
 
     const [hoverMenu, setHoverMenu] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
@@ -67,7 +67,7 @@ const AddUserToExamList = () => {
                         </ul>
                     </div>
                     <div className='page-details'>
-                        <h3>ایجاد آزمون / بارم دهی سوالات</h3>
+                        <h2>ایجاد آزمون / بارم دهی سوالات</h2>
                         <div className='filter-btn'>
                             <p>filter</p>
                             <p>makin</p>
@@ -79,49 +79,29 @@ const AddUserToExamList = () => {
                     <div className='transaction-container'>
                         <div className='transaction-record-sidebox'>
                             <div className='transaction-detail-container'>
-                                <div className='transaction-buttons-container deactive-relative-box'>
-                                    <div className='primary-box box-1'>
-                                        <span><Add /></span>
-                                        <p>دانلود نمونه</p>
-                                    </div>
-                                    <div className='primary-box box-2'>
-                                        <span><ChartIcon /></span>
-                                        <p>افزودن با اکسل</p>
-                                    </div>
+                                <div>
+                                    <p>پاسخبرگ کاربر :
+                                        <div>
+                                            ممد نوبری
+                                        </div>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>جمع کل نمره کاربر : {85}</p>
                                 </div>
                             </div>
                             <div className='transaction-filter-box'>
-                                <div className='add-user-side-buttons' style={{ justifyContent: "space-evenly" }}>
-                                    <p className='primary-box box-3'>افزودن همه</p>
-                                    <p className='primary-box box-4'>حذف همه</p>
-                                </div>
-                                <div className='filter-input-container'>
-                                    <p>جستوجو :</p>
-                                    <div className='margin-b-16'>
-                                        <input type="test" className='input-handler' placeholder='افزودن و جستوجو کاربر عادی ...' />
-                                    </div>
-                                    <p>+ ایجاد کاربر عادی</p>
-                                    <p>i اگر کاربر را نیافته اید ,آن را ایجاد کنید</p>
-                                </div>
-                                <p id='reset-btn'>حذف فیلتر ها</p>
+
+                                <label>
+                                    <input type="checkbox" className='' />
+                                    نمایش کارنامه و نمره به کاربر
+                                </label>
+                                <div className=''>تصحیح شد</div>
                             </div>
                         </div>
                         <div className="transaction-list-container active-primary-box">
-                            <div className='added-user-list--title'>لیست کاربران</div>
-
-                            <ul className='added-user-list--container'>
-                                <li className='added-user-list'>
-                                    <div className='added-user-list-id-details'>
-                                        <span className='no-handler'>{1} #</span>
-                                        <div className='added-user-list-details '>
-                                            <p>قاف علی</p>
-                                            <p>09123456789</p>
-                                        </div>
-                                    </div>
-                                    <span className='delete-btn'>X</span>
-                                </li>
-
-                            </ul>
+                            {/* < /> */}
+                            <DescriptiveCorrectionComponent />
                         </div>
                     </div>
                 </main>
@@ -130,4 +110,4 @@ const AddUserToExamList = () => {
     )
 }
 
-export default AddUserToExamList;
+export default DescriptiveExamCorrection;

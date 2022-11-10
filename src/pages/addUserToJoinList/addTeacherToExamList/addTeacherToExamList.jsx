@@ -7,9 +7,9 @@ import { ReactComponent as DashboardSvg } from '../../../assets/icons/menu/dashb
 import { ReactComponent as ChartIcon } from '../../../assets/icons/generals/chart.svg';
 import { ReactComponent as Add } from '../../../assets/icons/generals/add.svg';
 
-import './addUserToExamList.scss'
+import '../addUserToExamList/addUserToExamList.scss'
 
-const AddUserToExamList = () => {
+const AddTeacherToExamList = () => {
 
     const [hoverMenu, setHoverMenu] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
@@ -98,9 +98,9 @@ const AddUserToExamList = () => {
                                 <div className='filter-input-container'>
                                     <p>جستوجو :</p>
                                     <div className='margin-b-16'>
-                                        <input type="test" className='input-handler' placeholder='افزودن و جستوجو کاربر عادی ...' />
+                                        <input type="test" className='input-handler' placeholder='افزودن و جستوجو مدرس ...' />
                                     </div>
-                                    <p>+ ایجاد کاربر عادی</p>
+                                    <p>+ ایجاد مدرس</p>
                                     <p>i اگر کاربر را نیافته اید ,آن را ایجاد کنید</p>
                                 </div>
                                 <p id='reset-btn'>حذف فیلتر ها</p>
@@ -108,7 +108,7 @@ const AddUserToExamList = () => {
                         </div>
                         <div className="transaction-list-container active-primary-box">
                             <div className='added-user-list--title'>لیست کاربران</div>
-
+                            
                             <ul className='added-user-list--container'>
                                 <li className='added-user-list'>
                                     <div className='added-user-list-id-details'>
@@ -130,4 +130,4 @@ const AddUserToExamList = () => {
     )
 }
 
-export default AddUserToExamList;
+export default AddTeacherToExamList;
