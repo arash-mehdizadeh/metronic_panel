@@ -60,21 +60,13 @@ const ExamFormDetail = () => {
                 <header>
                     <div className='user-details'>
                         <ul>
-                            <li>search</li>
-                            <li>status</li>
-                            <li>notifs</li>
-                            <li>message</li>
-                            <li>dashboard</li>
-                            <li>dark/light</li>
+                            <li>user name</li>
                             <li>profile pic</li>
                         </ul>
                     </div>
                     <div className='page-details'>
-                        <h2>سوابق مالی</h2>
-                        <div className='filter-btn'>
-                            <p>filter</p>
-                            <p>makin</p>
-                        </div>
+                        <h2>ایجاد آزمون</h2>
+                        
                     </div>
                 </header>
                 {/* main secetion */}

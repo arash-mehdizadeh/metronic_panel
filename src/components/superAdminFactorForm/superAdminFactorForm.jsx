@@ -186,7 +186,6 @@ const SuperAdminFactorForm = () => {
                     </div>
                 </div>
                 <div id='form-add-button--container'>
-                    
                     <button type='submit' id='form-add-button'>افزودن</button>
                 </div>
             </form>

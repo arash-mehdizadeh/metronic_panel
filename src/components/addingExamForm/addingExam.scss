@@ -91,6 +91,12 @@
 #dateTime-span{
     display: flex;
     align-items: center;
+    p{
+        width: 60px;
+        &:last-child{
+            width: 150px
+        }
+    }
 }
 #form-input--show-exam-result{
     @include default-styles(30%);

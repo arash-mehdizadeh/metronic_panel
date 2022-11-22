@@ -79,12 +79,9 @@ const PdfUploadableExamCorrection = () => {
                     <div className='transaction-container'>
                         <div className='transaction-record-sidebox'>
                             <div className='transaction-detail-container'>
-                                <div>
-                                    <p>پاسخبرگ کاربر :
-                                        <div>
-                                            ممد نوبری
-                                        </div>
-                                    </p>
+                                <div className='user--exam-name' >
+                                    <p>پاسخبرگ کاربر :</p>
+                                    <p>ممد نوبری</p>
                                 </div>
                                 <div>
                                     <p>جمع کل نمره کاربر : {85}</p>

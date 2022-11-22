@@ -1,0 +1,17 @@
+@use "/src/styles/mixins.module";
+@import "/src/styles/variables";
+
+.sidebox-button-container{
+    padding: 20px ;
+    .user--exam-name{
+        display: flex;
+        align-items: center;
+        margin: 10px 0  ;
+        :last-child{
+            margin-right: 6px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            @include mixins.border();
+        }
+    }
+}

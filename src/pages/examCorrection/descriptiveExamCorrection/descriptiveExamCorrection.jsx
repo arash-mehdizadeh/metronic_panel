@@ -7,6 +7,7 @@ import { ReactComponent as ArrowMenu } from '../../../assets/icons/arrows/arr079
 import { ReactComponent as DashboardSvg } from '../../../assets/icons/menu/dashboard.svg';
 
 import '../../../App.scss';
+import './descriptiveExamCorrection.scss'
 
 
 const DescriptiveExamCorrection = () => {
@@ -78,13 +79,10 @@ const DescriptiveExamCorrection = () => {
                 <main className={`component-container ${activeMenu ? "main-full" : ''}`}>
                     <div className='transaction-container'>
                         <div className='transaction-record-sidebox'>
-                            <div className='transaction-detail-container'>
-                                <div>
-                                    <p>پاسخبرگ کاربر :
-                                        <div>
-                                            ممد نوبری
-                                        </div>
-                                    </p>
+                            <div className='transaction-detail-container sidebox-button-container'>
+                                <div className='user--exam-name' >
+                                    <p>پاسخبرگ کاربر :</p>
+                                    <p>ممد نوبری</p>
                                 </div>
                                 <div>
                                     <p>جمع کل نمره کاربر : {85}</p>
@@ -92,11 +90,11 @@ const DescriptiveExamCorrection = () => {
                             </div>
                             <div className='transaction-filter-box'>
 
-                                <label>
-                                    <input type="checkbox" className='' />
+                                <label className='checkbox--container'>
+                                    <input type="checkbox" className='input-checkbox' />
                                     نمایش کارنامه و نمره به کاربر
                                 </label>
-                                <div className=''>تصحیح شد</div>
+                                <button className='corrected-btn'>تصحیح شد</button>
                             </div>
                         </div>
                         <div className="transaction-list-container active-primary-box">

@@ -4,6 +4,9 @@
 @mixin border($border:$bs-gray-600) {
     border:1px solid $border;
 }
+@mixin border-bottom($border:$bs-gray-600) {
+    border-bottom:1px solid $border;
+}
 @mixin form-title {
     margin-bottom: 8px;
     font-weight: 700;
