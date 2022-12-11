@@ -13,6 +13,7 @@ import AddUserToExamList from './pages/addUserToJoinList/addUserToExamList/addUs
 import AddTeacherToExamList from './pages/addUserToJoinList/addTeacherToExamList/addTeacherToExamList';
 import DescriptiveExamCorrection from './pages/examCorrection/descriptiveExamCorrection/descriptiveExamCorrection';
 import PdfUploadableExamCorrection from './pages/examCorrection/pdfUploadableExamCorrection/pdfUploadableExamCorrection';
+import { MultichoiceCorrectionComponent, TestCorrectionComponent } from './components/correctionComponents/multichoiceCorrectionComponent/multichoiceCorrectionComponent';
 
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -35,54 +36,64 @@ const Routing = () => {
                         <SuperUser/>
                     </Suspense>
                 } />
-                <Route path="/add-exam" element={
+                <Route path="/create-exam" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddExamList/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/exam-form" element={
+                <Route path="/create-exam/exam-form" element={
                     <Suspense fallback={<>loading...</>} >
                         <ExamFormDetail/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/pdfUploadableExamGenerator" element={
+                <Route path="/create-exam/pdf-descriptive/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <PdfUploadableExam/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/customMultichoiceExamGenerator" element={
+                        <Route path="/create-exam/pdf-test/:quiz_id/:code" element={
+                            <Suspense fallback={<>loading...</>} >
+                                <TestExam/>
+                            </Suspense>
+                        } />
+                <Route path="/create-exam/custom-test/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomMultiChoiceExam/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/testExamGenerator" element={
-                    <Suspense fallback={<>loading...</>} >
-                        <TestExam/>
-                    </Suspense>
-                } />
-                <Route path="/add-exam/descriptiveExamGenerator" element={
+                <Route path="/create-exam/custom-descriptive/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomDescriptiveExam/>
                     </Suspense>
                 } />
-                <Route path="/add-exam/addUsersToJoinExam" element={
+                <Route path="/create-exam/addUsersToJoinExam" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddUserToExamList />
                     </Suspense>
                 } />
-                <Route path="/add-exam/addTeacherToJoinExam" element={
+                <Route path="/create-exam/addTeacherToJoinExam" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddTeacherToExamList />
                     </Suspense>
                 } />
-                <Route path="/exam-correction/descriptive" element={
+                <Route path="/correction/descriptive/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <DescriptiveExamCorrection />
                     </Suspense>
                 } />
-                <Route path="/exam-correction/pdfUploadable" element={
+                <Route path="/correction/pdf-descriptive/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <PdfUploadableExamCorrection />
+                    </Suspense>
+                } />
+                <Route path="/correction/pdf-test/:quiz_id/:code" element={
+                    <Suspense fallback={<>loading...</>} >
+                        <TestCorrectionComponent />
+                    </Suspense>
+                } />
+                <Route path="/correction/custom-test/:quiz_id/:code" element={
+                    <Suspense fallback={<>loading...</>} >
+                        <MultichoiceCorrectionComponent />
                     </Suspense>
                 } />
             </Routes>

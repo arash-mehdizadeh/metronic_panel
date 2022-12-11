@@ -1,28 +1,39 @@
+import { useEffect, useMemo, useState } from "react";
 
 import { DatePicker, DateTimePicker } from "react-advance-jalaali-datepicker";
 
 
 import './addingExam.scss';
 import { useForm } from "react-hook-form";
-import { useEffect, useMemo, useState } from "react";
+import { ErrorMessage } from '@hookform/error-message';
+import { quizCreateAPI } from "../../assets/api/createExamAPI";
+import { useNavigate } from "react-router-dom";
 
-const AddingExamForm1 = () => {
+const AddingExamForm = () => {
+
+    const navigate = useNavigate();
 
     const [activeExamType, setActiveExamType] = useState("test");
     const [activeTypeTest, setActiveTypeTest] = useState("rank");
     const [negativeAnswer, setNegativeAnswer] = useState("false");
-    const [negativePoint, setNegativePoint] = useState("3/1");
     const [examDate, setExamDate] = useState("anyDate");
     const [enterTime, setEnterTime] = useState("anyTime");
     const [endTime, setEndTime] = useState("anyTime");
     const [examResult, setExamResult] = useState("no_display");
+    const [showResultDate, setShowResultDate] = useState()
+    const [examStartDate, setExamStartDate] = useState();
+    const [toggle, setToggle] = useState(false);
 
-    // const [first, setfirst] = useState(second)
-    // const [first, setfirst] = useState(second)
-    // const [first, setfirst] = useState(second)
-    // const [first, setfirst] = useState(second)
-    // const [first, setfirst] = useState(second)
 
+
+    function showResultDateHandler(unix, formatted) {
+        // console.log(unix); // returns timestamp of the selected value, for example.
+        setShowResultDate(formatted); // returns the selected value in the format you've entered, forexample, "تاریخ: 1396/02/24 ساعت: 18:30".
+    }
+    function examStartDateHandler(unix, formatted) {
+        // console.log(unix); // returns timestamp of the selected value, for example.
+        setExamStartDate(formatted); // returns the selected value in the format you've entered, forexample, "تاریخ: 1396/02/24 ساعت: 18:30".
+    }
     const testTypeHandler = (event) => {
         setActiveTypeTest(event.target.value);
     }
@@ -44,6 +55,12 @@ const AddingExamForm1 = () => {
     const examResultHandler = (event) => {
         setExamResult(event.target.value);
     }
+    const toggleHandler = () => {
+        setToggle(prev => !prev)
+    }
+    const handleChange = (e) => {
+        setToggle(e.target.checked)
+    }
 
     const user = {
         type: "test",
@@ -51,34 +68,86 @@ const AddingExamForm1 = () => {
         questionType: "pdf",
     }
 
-    const { register, reset, setValue, getValues, handleSubmit } = useForm({
+
+    const { register, reset, formState: { errors }, setValue, getValues, handleSubmit } = useForm({
         defaultValues: useMemo(() => {
             // console.log("User has changed");
             return user;
         }, [])
     });
+    
+
+    const setExamData = async(props) => {
+        const formStoreData = {
+            title: props.title,
+            number_of_question: props.number_of_question,
+            type: activeExamType,
+            test_type: activeExamType === "descriptive" ? "score" : activeTypeTest,
+            negative_point: negativeAnswer === "false" ? null : props.negative_point,
+            date: examDate === "anyDate" ? null : examStartDate,
+            start_time_from: enterTime !== "specified" ? null : props.start_time_from,
+            start_time_to: enterTime !== "specified" ? null : props.start_time_to,
+            end_time: endTime === "end_time" ? props.end_time : null,
+            duration: endTime === "duration" ? props.duration : null,
+            show_result: examResult,
+            show_result_from: examResult === "range" ? showResultDate +" " + props.show_result_from_time : null,
+            show_result_to: examResult === "range" ? showResultDate +" " + props.show_result_from_time : null,
+            question_type: props.questionType,
+            guest: props.guest ? 1 : 0,
+            leave: props.leave ? 1 : 0,
+            active: toggle ? 1 : 0,
+        }
+        console.log(formStoreData);
+        const res = await quizCreateAPI(formStoreData)
+        if(res?.status === "success"){
+            navigate(`/create-exam/${res?.data.question_type}-${res?.data.type}/${res?.data.id}/${res?.data.code}`);
+        }
+        else{
+            alert(res?.status)
+        }
+        console.log(res);
+    }
 
 
+    const handleRegistration = (data) => {
+        setExamData(data);
+
+        // do this : make a function and send data as props to func
+        // console.log(formStoreData);
+    }
 
     // useEffect(()=>{
     //     console.log("changed");
-    //     setActiveTypeTest(prev => !prev)
+    //     setActiveTypeTest(prev => !prev) 
     // },[getValues("type")])
 
     return (
-        <form onSubmit={handleSubmit(d => console.log(d))}>
-            <div className='form-1-container'>
+        <form onSubmit={handleSubmit(handleRegistration)}>
+            <div className='form-1-container  active-primary-box'>
                 <div className='exam-form-details'>
                     <div className='form-input--container'>
                         <p className='form-title'>عنوان آزمون :</p>
-                        <input type="text" {...register("title")} className='form-input' placeholder='عنوان آزمون را وارد کنید' />
+                        <ErrorMessage
+                            errors={errors}
+                            name="title"
+                            render={({ message }) => <p className="form-title error-message">{"این فیلد اجباری میباشد *"}</p>}
+                        />
+                        <input type="text" {...register("title", { required: true })} className='form-input' placeholder='عنوان آزمون را وارد کنید' />
+                        <ErrorMessage errors={errors} name="title" />
                     </div>
                     <div className='form-input--container'>
                         <p className='form-title'>تعداد سوالات :</p>
-                        <input type="text" className='form-input' {...register("number_of_question")} placeholder='تعداد سوالات را وارد کنید ...' />
+                        <ErrorMessage
+                            errors={errors}
+                            name="number_of_question"
+                            render={({ message }) => <p className="form-title error-message">{"این فیلد اجباری میباشد *"}</p>}
+                        />
+                        <input type="number" className='form-input' {...register("number_of_question", { required: true })} placeholder='تعداد سوالات را وارد کنید ...' />
+                        <ErrorMessage errors={errors} name="number_of_question" />
                     </div>
                     <div className='form-input-radio--container'>
                         <p className='form-title'>نوع آزمون :</p>
+
                         <div className='radio--container'>
                             <label className='input-radio-title'>
                                 <input className='form-check-input custom-checkbox' onChange={examTypeHandler}
@@ -94,18 +163,18 @@ const AddingExamForm1 = () => {
                             </label>
                         </div>
                     </div>
-                    <div className='form-input-radio--container'>
+                    <div className='form-input-radio--container' style={{ display: activeExamType === "descriptive" ? "none" : "flex" }}>
                         <p className='form-title'>نوع آزمون تستی :</p>
                         <div className='radio--container'>
                             <label className='input-radio-title'>
                                 <input className='form-check-input custom-checkbox' onChange={testTypeHandler}
-                                    checked={activeTypeTest === "rank" ? true : false} disabled={activeExamType === "descriptive"}
+                                    checked={activeTypeTest === "rank" ? true : false}
                                     value={"rank"} type="radio" />
                                 رتبه ای (رقابتی)
                             </label>
                             <label className='input-radio-title'>
                                 <input className='form-check-input custom-checkbox' onChange={testTypeHandler}
-                                    checked={activeTypeTest === "score" ? true : false} disabled={activeExamType === "descriptive"}
+                                    checked={activeTypeTest === "score" ? true : false}
                                     value={"score"} type="radio" />
                                 بارم دار (نمره دار)
                             </label>
@@ -129,9 +198,9 @@ const AddingExamForm1 = () => {
                                     value={"true"} type="radio" />
                                 <select placeholder='انتخاب مدیر آموزشگاه' {...register("negative_point")} disabled={negativeAnswer === "false"}
                                     className='select-form-input' > {/* add register in here */}
+                                    <option className='factorForm--option' value="2/1">2 به 1</option>
                                     <option className='factorForm--option' value="3/1">3 به 1</option>
-                                    <option className='factorForm--option' value="1/1">1 به 1</option>
-                                    <option className='factorForm--option' value="5/1">5 به 1</option>
+                                    <option className='factorForm--option' value="4/1">4 به 1</option>
                                 </select>
                             </label>
                         </div>
@@ -154,9 +223,9 @@ const AddingExamForm1 = () => {
                                 <DatePicker
                                     // disabled={examDate === "anyTime"}  
                                     placeholder="انتخاب تاریخ"
-                                    format="تاریخ: jYYYY/jMM/jDD ساعت: HH:mm"
+                                    format="jYYYY-jMM-jDD"
                                     id="dateTimePicker"
-                                // onChange={...register("date")}
+                                    onChange={examStartDateHandler}
                                 />
                             </label>
                         </div>
@@ -178,9 +247,9 @@ const AddingExamForm1 = () => {
                                     value={"specified"} type="radio" />
                                 <span id='dateTime-span'>
                                     <p>از ساعت</p>
-                                    <input disabled={enterTime === "anyTime"} type="time" id="form-input--show-exam-result" placeholder="ساعت ورود به آزمون" />
+                                    <input disabled={enterTime === "anyTime"}  {...register("start_time_from")} type="time" id="form-input--show-exam-result" placeholder="ساعت ورود به آزمون" />
                                     <p>تا ساعت</p>
-                                    <input type="time" disabled={enterTime === "anyTime"} id="form-input--show-exam-result" placeholder="ساعت خروج" />
+                                    <input type="time" {...register("start_time_to")} disabled={enterTime === "anyTime"} id="form-input--show-exam-result" placeholder="ساعت خروج" />
                                     <p>تاریخ برگزاری آزمون</p>
                                 </span>
                             </label>
@@ -199,18 +268,18 @@ const AddingExamForm1 = () => {
                             <label className='input-radio-title'>
                                 <input className='form-check-input custom-checkbox'
                                     onChange={endTimeHandler}
-                                    checked={endTime === "specified_time"}
-                                    value={"specified_time"} type="radio" />
+                                    checked={endTime === "end_time"}
+                                    value={"end_time"} type="radio" />
                                 <p>ساعت</p>
-                                <input type="time"  id='form-input--show-exam-result' disabled={endTime !== "specified_time"}  {...register("end_time")} />
+                                <input type="time" id='form-input--show-exam-result' disabled={endTime !== "end_time"}  {...register("end_time")} />
                                 <p style={{ width: "170px", paddingRight: "10px" }}>تاریخ برگزاری آزمون</p>
                             </label>
                             <label className='input-radio-title'>
                                 <input className='form-check-input custom-checkbox'
                                     onChange={endTimeHandler}
-                                    checked={endTime === "min_end"}
-                                    value={"min_end"} type="radio" />
-                                تا<input type="text" id='form-input--show-exam-result' disabled={endTime !== "min_end"} {...register("end_time")} placeholder='60' />دقیقه بعد از ورود کاربر به آزمون
+                                    checked={endTime === "duration"}
+                                    value={"duration"} type="radio" />
+                                تا<input type="text" id='form-input--show-exam-result' disabled={endTime !== "duration"} {...register("duration")} placeholder='60' />دقیقه بعد از ورود کاربر به آزمون
                             </label>
                         </div>
                     </div>
@@ -232,14 +301,15 @@ const AddingExamForm1 = () => {
                                     value={"after_quiz_end"} type="radio" />
                                 پس از اتمام آزمون
                             </label>
+
                             <label className='input-radio-title'>
-                                <input className='form-check-input custom-checkbox'  onChange={examResultHandler}
-                                    checked={examResult === "specified_date"}
-                                    value={"specified_date"}  type="radio" />
-                                <p>در تاریخ</p>
-                                <DatePicker id='dateTimePicker' style={{width : "300px"}}  preSelected='انتخاب تاریخ'   {...register("show_result_from")} />
+                                <input className='form-check-input custom-checkbox' onChange={examResultHandler}
+                                    checked={examResult === "range"}
+                                    value={"range"} type="radio" />
+                                <p style={{ width: "55px" }}>در تاریخ</p>
+                                <DatePicker id='dateTimePicker' style={{ width: "300px" }} format="jYYYY-jMM-jDD" preSelected='انتخاب تاریخ' onChange={showResultDateHandler} />
                                 <p>ساعت</p>
-                                <input type="time" id='form-input--show-exam-result' {...register("show_result_to")} />
+                                <input type="time" id='form-input--show-exam-result' disabled={examResult !== "range"} {...register("show_result_from_time", { required: examResult === "specified_date" ? true : false })} />
                             </label>
                         </div>
                     </div>
@@ -266,24 +336,46 @@ const AddingExamForm1 = () => {
                         </div>
                     </div>
                     <div className="exam-form-option--container">
-                        <input type="checkbox" {...register("active")} className="form-check-input" />
-                        <div className="option-description--container">
-                            <p className="input-title">{`احراز هویت کاربر مهمان ( پیامک باقی مانده ${124}) `}</p>
-                            <p><span>icon</span>در صورت فعال بودن این گزینه ,قبل از ورود کاربران به آزمون شماره موبایل و نام آنها دریافت میشود که در قسمت کاربران آزمون نمایش داده میشود هزینه ارسال پیامک احراز هویت با شما میباشد <span>اطلاعات بیشتر</span></p>
-                        </div>
-                    </div>
-                    <div className="exam-form-option--container">
                         <input type="checkbox"  {...register("leave")} className="form-check-input" />
                         <div className="option-description--container">
                             <p className="input-title" >ترک آزمون فعال باشد</p>
                             <p><span>icon</span>در صورت فعال بودن این گزینه ,در صورتی که کاربر آزمون را ترک کند زمان باقی مانده آزمون برای وی محفوظ تا زمانی که بتواند وارد آزمون شود</p>
                         </div>
                     </div>
+                    <div className='exam-form-option--container' style={{alignItems:"center"}}>
+                        <div className="switch">
+                            <span>
+                                <input
+                                    type="checkbox"
+                                    id="toggleInput"
+                                    // ref="toggleInput"
+                                    checked={toggle}
+                                    onChange={handleChange}
+                                />
+                                <button
+                                    className="slider"
+                                    type="button"
+                                    onClick={() => toggleHandler()}>
+                                </button>
+                            </span>
+                            <label
+                                htmlFor="toggleInput"
+                                onClick={() => toggleHandler()}>
+
+                                {/* Change to {this.props.title} and you can set the label text in a higher level component */}
+                            </label>
+                        </div>
+                        <p>
+                            آزمون {toggle ? "فعال" : "غیر فعال"} است
+                        </p>
+                    </div>
                 </div>
-                <button type="submit">submit</button>
+            </div>
+            <div id="form-add-button--container">
+                <button type="submit" id="form-add-button">افزودن</button>
             </div>
         </form>
     )
 }
 
-export default AddingExamForm1
+export default AddingExamForm

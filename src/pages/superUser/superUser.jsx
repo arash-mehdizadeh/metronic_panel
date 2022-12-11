@@ -18,6 +18,9 @@ const SuperUser = () => {
     const closeMenu = () => {
         document.getElementById("sidebar").style.width = "75px";
     }
+
+    const tableHeader = ["#", "عنوان تکلیف", "زمان ارسال", "زمان تحویل", " تکلیف", " تکلیف کاربران", "لینک کاربری", "وضعیت", "نتایج", "عملیات"]
+
     return (
         <div className="app_container" >
             <div className="container" style={{ paddingRight: activeMenu ? "75px" : "265px" }}>
@@ -111,44 +114,84 @@ const SuperUser = () => {
                             </div>
                         </div>
                         <div className="transaction-list-container active-primary-box">
-                            <div className='header-list'>
-                                <ul>
-                                    <li>#</li>
-                                    <li>عنوان تکلیف</li>
-                                    <li>زمان ارسال</li>
-                                    <li>زمان تحویل</li>
-                                    <li>تکلیف</li>
-                                    <li>کاربران تکلیف</li>
-                                    <li>لینک کاربری</li>
-                                    <li>وضعیت</li>
-                                    <li>نتایج</li>
-                                    <li>عملیات</li>
-                                </ul>
-                            </div>
-                            <div className='homework-list-container'>
-                                <ul>
-                                    <li className='homework-list'>
-                                        <p>مهندسی روانشناسی تکنیکال</p>
-                                        <div>
-                                            <p>56/11/23</p>
-                                            <p>18:00</p>
-                                        </div>
-                                        <div>
-                                            <p>56/11/23</p>
-                                            <p>18:00</p>
-                                        </div>
-                                        <p>ویرایش</p>
-                                        <p>حذف و اضافه</p>
-                                        <p>کپی لینک</p>
-                                        <p>فعال</p>
-                                        <p>مشاهده</p>
-                                        <div>
-                                            <p>پیشنمایش</p>
-                                            <p>see edit msg</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            
+                            <table>
+                                <tr>
+                                    <th>#</th>
+                                    <th>عنوان تکلیف</th>
+                                    <th>زمان ارسال</th>
+                                    <th>زمان تحویل</th>
+                                    <th>تکلیف</th>
+                                    <th>کاربران تکلیف</th>
+                                    <th>لینک کاربری</th>
+                                    <th>وضعیت</th>
+                                    <th>نتایج</th>
+                                    <th>عملیات</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>مهندسی روانشناسی تکنیکال</td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>ویرایش</td>
+                                    <td>حذف و اضافه</td>
+                                    <td>کپی لینک</td>
+                                    <td>فعال</td>
+                                    <td>مشاهده</td>
+                                    <td>
+                                        <p>پیشنمایش</p>
+                                        <p>see edit msg</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>مهندسی روانشناسی تکنیکال</td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>ویرایش</td>
+                                    <td>حذف و اضافه</td>
+                                    <td>کپی لینک</td>
+                                    <td>فعال</td>
+                                    <td>مشاهده</td>
+                                    <td>
+                                        <p>پیشنمایش</p>
+                                        <p>see edit msg</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>مهندسی روانشناسی تکنیکال</td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>
+                                        <p>56/11/23</p>
+                                        <p>18:00</p>
+                                    </td>
+                                    <td>ویرایش</td>
+                                    <td>حذف و اضافه</td>
+                                    <td>کپی لینک</td>
+                                    <td>فعال</td>
+                                    <td>مشاهده</td>
+                                    <td>
+                                        <p>پیشنمایش</p>
+                                        <p>see edit msg</p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </main>

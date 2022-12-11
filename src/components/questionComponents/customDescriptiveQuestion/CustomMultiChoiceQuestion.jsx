@@ -1,19 +1,27 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo ,useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-
+import Swal from 'sweetalert2';
 
 import './CustomMultiChoiceQuestion.scss';
 
 
 
 
-const MultiChoiceComponent = ({ id, score }) => {
+const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
 
     const [value, setValue] = useState("");
     const [question, setQuestion] = useState("");
     const [correctOption, setCorrectOption] = useState(0)
 
-    const { register ,getValues } = useForm();
+    const { register ,getValues ,handleSubmit } = useForm();
+
+    useEffect(() => {
+        var abc = 0;
+        document.querySelectorAll('#custom-test--score-input').forEach(input => {
+            abc += +input.value;
+        });
+        sumHandler(abc);
+    },[value])
 
     const handleOnChange = (e) => {
         setValue(e.target.value);
@@ -25,32 +33,57 @@ const MultiChoiceComponent = ({ id, score }) => {
         setQuestion(e.target.value);
     };
     const handleOnSubmit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
+        if(correctOption === 0){
+            Swal.fire({
+                icon:"warning",
+                title:"گزینه صحیح را انتخاب کنید",
+                text:` در سوال ${id} ,گزینه صحیح را انتخاب کنید`,
+                timer:2500
+            })
+        }
+        else{
         console.log({
-            id: id,
-            score: getValues("score"),
+            question_number: id,
+            score: event.score,
             questionInput: getValues("questionInput"),
-            option1: getValues("option1"),
-            option2: getValues("option2"),
-            option3: getValues("option3"),
-            option4: getValues("option4"),
-            correctAnswer: correctOption
-            
-        });
+            options: [
+                {
+                    option_number: 1,
+                    correct: correctOption == 1 ? 1 : 0,
+                    body: getValues("option1")
+                },
+                {
+                    option_number: 2,
+                    correct: correctOption == 2 ? 1 : 0,
+                    body: getValues("option2")
+                },
+                {
+                    option_number: 3,
+                    correct: correctOption == 3 ? 1 : 0,
+                    body: getValues("option3")
+                },
+                {
+                    option_number: 4,
+                    correct: correctOption == 4 ? 1 : 0,
+                    body: getValues("option4")
+                },
+            ],
+        });}
     };
 
 
     return (
-        <form onSubmit={handleOnSubmit} className='descriptive-question' key={id}>
+        <form onSubmit={handleSubmit(d => handleOnSubmit(d))} className='descriptive-question' key={id}>
             <div className='question-scoring--container'>
                 <p className='input-title input--scoring-custom'>سوال {id} :</p>
                 <div className='input-title descriptive-scoring--container'>
-                    <input type="number" {...register("score")} className='input--score' />
+                    <input type="number" {...register("score",{required:true})} id='custom-test--score-input' className='input--score' />
                     <p>نمره</p>
                 </div>
             </div>
             <div className='descriptive-question--detail'>
-                <textarea className='input--textarea' rows="15"  {...register("questionInput")} placeholder='سوال را اینجا بنویسید ...' />
+                <textarea className='input--textarea' rows="15"  {...register("questionInput",{required:true})} placeholder='سوال را اینجا بنویسید ...' />
                 <div></div>
                 <div></div>
                 <div className='descriptive-question--upload-container'>
@@ -111,7 +144,7 @@ const MultiChoiceComponent = ({ id, score }) => {
 }
 
 
-const CustomMultiChoiceQuestion = () => {
+const CustomMultiChoiceQuestion = (props) => {
 
 
     const [scoreData, setScoreData] = useState([]);
@@ -154,10 +187,14 @@ const CustomMultiChoiceQuestion = () => {
         setNum(prev => prev + 1)
     }
 
+    function sumHandler(sum) {
+        props.scoreSum(sum)
+    }
+
     return (
         <div className='descriptive-question--container'>
             {scoreData.map((el) =>
-                <MultiChoiceComponent id={el.id} score={el.score} />
+                <MultiChoiceComponent id={el.id} score={el.score} sumHandler={sumHandler} />
             )}
             <div className='add-question--button' onClick={() => addSingleScore()}>
                 <button id='submitBtn'>+ اضافه کردن سوال</button>

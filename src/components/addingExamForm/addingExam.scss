@@ -1,3 +1,6 @@
+@use "../../styles/mixins.module";
+@import "../../styles/variables";
+
 @mixin default-styles($inputWidth:100%){
     width: $inputWidth;
     border-radius: 10px;
@@ -10,11 +13,6 @@
     transition: color .2s ease,background-color .2s ease;
 }
 
-@mixin form-title {
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 14px;
-}
 
 @mixin checkbox {
     margin-left: 6px;
@@ -42,7 +40,7 @@
                 display: flex;
                 flex-direction: column;
                 .input-title{
-                    @include form-title();
+                    @include mixins.form-title();
                 }
             }
         }
@@ -54,7 +52,7 @@
     flex-direction: column;
     margin-bottom: 26px;
     .form-title{
-        @include form-title();
+        @include mixins.form-title();
     }
 }
 .form-input{
@@ -65,11 +63,11 @@
     flex-direction: column;
     margin-bottom: 26px;
     .form-title{
-        @include form-title();
+        @include mixins.form-title();
     }
     .radio--container{
         display: flex;
-        @include form-title();
+        @include mixins.form-title();
         .select-form-input{
             @include default-styles(100px);
         }
@@ -104,3 +102,16 @@
 }
 
 
+#form-add-button--container{
+    display: flex;
+    margin: 20px 0 0 20px;
+    justify-content: flex-end;
+}
+#form-add-button{
+    @include mixins.form-add-button();
+}
+
+.error-message{
+    font-size: 13px !important;
+    color:$bs-red ;
+}

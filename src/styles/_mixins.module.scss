@@ -19,6 +19,17 @@
     height: 15px !important;
 }
 
+@mixin form-add-button{
+        display: flex;
+        background-color: $bs-blue;
+        font-size: 14px;
+        color: #fff;
+        padding: 10px 25px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+}
+
 @mixin button ($backgroundColor ,$color:#fff) {
     all: unset;
     background-color: $backgroundColor;

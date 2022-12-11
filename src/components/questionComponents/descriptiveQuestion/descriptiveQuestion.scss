@@ -50,7 +50,9 @@
         width: 100%;
         padding: 20px;
         border-radius: 15px;
-
+        &-container{
+            @include mixins.border-bottom();
+        }
     }
     &--upload-container{
         display: flex;

@@ -95,9 +95,7 @@ const DescriptiveQuestion = () => {
     };
 
 
-    const increaseNum = () => {
-        setNum(prev => prev + 1);
-    }
+    
     const addSingleScore = () => {
         setScoreData(arr => [...arr, {
             id: num,
