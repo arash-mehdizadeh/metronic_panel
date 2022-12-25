@@ -15,8 +15,7 @@ const TestExam = () => {
     const params = useParams();
     const [sum, setSum] = useState(0)
     const [file, setFile] = useState(null)
-    console.log(params.code.replace("?",""))
-    console.log(params.code.replace("#",""))
+
 
     const formDataRes = async (res) => {
         // const resp = await postUserDescriptionAnswer(props.id, props.attemptID, userAnswer);
@@ -39,13 +38,16 @@ const TestExam = () => {
 
     const onFileChangeHandler = (event) => {
         setFile(event.target.files[0]);
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
     }
     const onFileDeleteHandler = () => {
         ref.current.value = "";
     }
     function scoreSum(data) {
         setSum(data)
+    }
+    const handleSubmitQuestion = (data) => {
+        // console.log(data);
     }
 
     return (
@@ -63,13 +65,13 @@ const TestExam = () => {
                             </div>
                         </div>
                         <p id='reset-btn' onClick={()=> onFileDeleteHandler()} >حذف فایل</p>
-                        <div className=''>
-                            <button >ثبت نهایی سوالات</button>
-                        </div>
+                        <foem onSubmit={handleSubmitQuestion}>
+                            <button id='confirm-btn'>ثبت و ادامه</button>
+                        </foem>
                     </div>
                 </form>
                 <div className="transaction-list-container active-primary-box">
-                    <TestQuestion scoreSum={scoreSum} />
+                    <TestQuestion scoreSum={scoreSum} questions={handleSubmitQuestion} amount={ +params.qu_amount} />
                 </div>
             </div>
         </Layout>

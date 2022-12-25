@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -5,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import './descriptiveQuestion.scss';
 
 
-const DescriptiveQuestionComponent = ({ id, score }) => {
+const DescriptiveQuestionComponent = ({ id, score ,sumHandler }) => {
 
     const [value, setValue] = useState("");
     const [question, setQuestion] = useState("");
@@ -19,16 +20,23 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
     };
     const handleOnSubmit = (event) => {
         event.preventDefault();
-
+        
     };
 
+    useEffect(() => {
+        var abc = 0;
+        document.querySelectorAll('#form-input-score').forEach(input => {
+            abc += +input.value;
+        });
+        sumHandler(abc);
+    }, [value])
 
     return (
         <form onSubmit={handleOnSubmit} className='descriptive-question' key={id}>
             <div className='question-scoring--container'>
                 <p className='input-title input--scoring-custom'>سوال {id} :</p>
                 <div className='input-title descriptive-scoring--container'>
-                    <input type="number" value={value} onChange={handleOnChange} className='input--score' />
+                    <input type="number" value={value} id='form-input-score' onChange={handleOnChange} min="0" step={"0.25"}  className='input--score' />
                     <p>نمره</p>
                 </div>
             </div>
@@ -50,72 +58,46 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
 }
 
 
-const DescriptiveQuestion = () => {
+const DescriptiveQuestion = (props) => {
 
 
     const [scoreData, setScoreData] = useState([]);
-    const [num, setNum] = useState(1);
 
 
-    const deleteHandler = (index) => {
-        // console.log(index);
-        const updatedData = scoreData.filter((elem) => {
-            return index !== elem.id;
-        });
-        setScoreData(updatedData);
-    };
-
-    const updateScoreHandler = (idScore, event) => {
-        var updatedData = scoreData.filter((elem) => {
-            return idScore === elem.id;
-        });
-        var updatedList = scoreData.filter((elem) => {
-            return idScore !== elem.id;
-        });
-
-        updatedData[0].score = +event;
-
-        updatedList.push(updatedData[0])
-        setScoreData(updatedList)
-
-    };
-
-
-    const updateOptionHandler = (idScore, optionValue) => {
-        var updatedData = scoreData.filter((elem) => {
-            return idScore === elem.id;
-        });
-        var updatedList = scoreData.filter((elem) => {
-            return idScore !== elem.id;
-        });
-
-        updatedData[0].option = +optionValue;
-
-        updatedList.push(updatedData[0])
-        setScoreData(updatedList)
-
-    };
-
-
-
-    const addSingleScore = () => {
-        setScoreData(arr => [...arr, {
-            id: num,
-            score: 0,
-            questionInput: "",
+    const handleAutoObj = () => {
+        let arr = [];
+        const question = (id) => {
+            return {
+                id: id+1,
+                score: 0,
+                questionInput: "",
+                imageSrc:"",
+                voiceSrc:"",
+            }
         }
-        ])
-        setNum(prev => prev + 1)
+        for (let i = 0; i < +props.amount; i++) {
+            arr.push(question(i));
+        }
+        setScoreData(arr)
     }
+
+    function sumHandler(num){
+        props.scoreSum(num)
+    }
+
+    useEffect(()=>{
+        handleAutoObj();
+    },[])
+
 
     return (
         <div className='descriptive-question--container'>
             {scoreData.map((el) =>
-                <DescriptiveQuestionComponent id={el.id} score={el.score} />
+                <DescriptiveQuestionComponent id={el.id} score={el.score} sumHandler={sumHandler} />
             )}
-            <div className='add-question--button' onClick={() => addSingleScore()}>
+            {/* <div className='add-question--button' onClick={() => addSingleScore()}>
                 <button id='submitBtn'>+ اضافه کردن سوال</button>
-            </div>
+            </div> */}
         </div>
     )
 }

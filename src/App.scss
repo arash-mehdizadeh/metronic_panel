@@ -281,25 +281,25 @@
     padding: 20px !important;
 }
 
-table {
+// table {
 
-    border-collapse: collapse;
-    width: 100%;
-  }
+//     border-collapse: collapse;
+//     width: 100%;
+//   }
 
-th{
-    font-weight: 800;
-}
+// th{
+//     font-weight: 800;
+// }
 
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: right;
-    padding: 8px;
-  }
+//   td, th {
+//     border: 1px solid #dddddd;
+//     text-align: right;
+//     padding: 8px;
+//   }
   
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+//   tr:nth-child(even) {
+//     background-color: #dddddd;
+//   }
 
 .checkbox--container{
     display: flex;
@@ -363,4 +363,77 @@ th{
     height:30px !important ;
     border-radius: 99px;
     border: 1px solid #000;
+}
+
+.table-header{
+    text-align: center;
+    padding:4px 10px 8px;
+    font-size: 11px;
+    border-bottom: 1px solid #000;
+}
+.table-body{
+    text-align: center;
+    padding:20px 10px;
+    font-size: 11px;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.thead{
+    background-color: #fafafa;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.tbody{
+    border-bottom: 1px solid #d5d5d5;
+    // display: flex;
+    color: #9C9C9C;
+    align-items: center;
+    &:hover{
+        background-color: #fafafa;
+    }
+    .color-purple{
+        color:#c30a7f;
+        cursor: pointer;
+    }
+    .button{
+        display: flex;
+        color: #000;
+        background-color: #6DF1FD;
+        border-radius: 15px;
+        padding: 10px ;
+    }
+    .auth-field{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input{
+            margin-left: 5px;
+        }
+    }
+}
+table{
+    width: 100%;
+}
+
+.opration{
+    display: flex;
+    flex-direction: column;
+    &-icons{
+        display: flex;
+        margin-top: 5px;
+        justify-content: space-between;
+    }
+}
+.preview-text{
+    color: #00b3c3 !important;
+}
+
+#confirm-btn{
+    margin-top: 25px !important;
+    all: unset;
+    padding: 10px 20px; 
+    cursor: pointer;
+    border-radius: 15px;
+    color: #fafafa;
+    background-color: #5a006d;
 }

@@ -4,10 +4,11 @@ import PdfUploadable from '../../../components/questionComponents/customDescript
 
 import '../../../App.scss';
 import Layout from '../../../layout/layout';
+import { useParams } from 'react-router-dom';
 
 
 const PdfUploadableExam = () => {
-
+    const params = useParams()
     const [sum, setSum] = useState(0);
 
     function scoreSum(data) {
@@ -29,12 +30,12 @@ const PdfUploadableExam = () => {
                         </div>
                         <p id='reset-btn'>حذف فایل</p>
                         <div>
-                            <button>ثبت سوالات</button>
+                            <button id='confirm-btn'>ثبت سوالات</button>
                         </div>
                     </div>
                 </div>
                 <div className="transaction-list-container active-primary-box">
-                    <PdfUploadable scoreSum={scoreSum} />
+                    <PdfUploadable scoreSum={scoreSum} amount={params.qu_amount} />
                 </div>
             </div>
         </Layout>

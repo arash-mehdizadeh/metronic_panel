@@ -76,7 +76,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
             <div className='question-scoring--container'>
                 <p className='input-title input--scoring-custom'>سوال {id} :</p>
                 <div className='input-title descriptive-scoring--container'>
-                    <input type="number" {...register("score",{required:true})} id='custom-test--score-input' className='input--score' />
+                    <input type="number" {...register("score",{required:true})} min="0" step={"0.25"}  id='custom-test--score-input' className='input--score' />
                     <p>نمره</p>
                 </div>
             </div>
@@ -93,7 +93,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
 
                     <div className='multichoice-question'>
                         <p className='input-title' style={{margin:0,width:"60px"}}>گزینه 1 :</p>
-                        <input type="text" className='input--answer-option' {...register("option1")} placeholder='گزینه 1 را بنویسید'  />
+                        <input type="text" className='input--answer-option' {...register("option1",{required:true})} placeholder='گزینه 1 را بنویسید'  />
                         <div className='currect-answer--radio-btn'>
                             <input type="radio" className='input--radio-btn' onChange={()=>handleOptionChange(1)} 
                                 checked={correctOption === 1}
@@ -103,7 +103,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
                     </div>
                     <div className='multichoice-question'>
                         <p className='input-title' style={{margin:0,width:"60px"}}>گزینه 2 :</p>
-                        <input type="text" className='input--answer-option' {...register("option2")} placeholder='گزینه 2 را بنویسید'  />
+                        <input type="text" className='input--answer-option' {...register("option2",{required:true})} placeholder='گزینه 2 را بنویسید'  />
                         <div className='currect-answer--radio-btn'>
                             <input type="radio" className='input--radio-btn' onChange={()=>handleOptionChange(2)} 
                                 checked={correctOption === 2}
@@ -113,7 +113,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
                     </div>
                     <div className='multichoice-question'>
                         <p className='input-title' style={{margin:0,width:"60px"}}>گزینه 3 :</p>
-                        <input type="text" className='input--answer-option' {...register("option3")} placeholder='گزینه 3 را بنویسید'  />
+                        <input type="text" className='input--answer-option' {...register("option3",{required:true})} placeholder='گزینه 3 را بنویسید'  />
                         <div className='currect-answer--radio-btn'>
                             <input type="radio" className='input--radio-btn' onChange={()=>handleOptionChange(3)}
                                 checked={correctOption === 3}
@@ -123,7 +123,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
                     </div>
                     <div className='multichoice-question'>
                         <p className='input-title' style={{margin:0,width:"60px"}}>گزینه 4 :</p>
-                        <input type="text" className='input--answer-option' {...register("option4")} placeholder='گزینه 4 را بنویسید'  />
+                        <input type="text" className='input--answer-option' {...register("option4",{required:true})} placeholder='گزینه 4 را بنویسید'  />
                         <div className='currect-answer--radio-btn'>
                             <input type="radio" className='input--radio-btn' onChange={()=>handleOptionChange(4)}
                                 checked={correctOption === 4}
@@ -147,16 +147,6 @@ const CustomMultiChoiceQuestion = (props) => {
 
 
     const [scoreData, setScoreData] = useState([]);
-    const [num, setNum] = useState(1);
-
-
-    const deleteHandler = (index) => {
-        // console.log(index);
-        const updatedData = scoreData.filter((elem) => {
-            return index !== elem.id;
-        });
-        setScoreData(updatedData);
-    };
 
 
     const updateOptionHandler = (idScore, data) => {
@@ -167,24 +157,52 @@ const CustomMultiChoiceQuestion = (props) => {
         setScoreData(updatedList)
     };
 
+    if (props.isCorrection){
+        // fetchData
+        // set data
+    }
 
-    const increaseNum = () => {
-        setNum(prev => prev + 1);
-    }
-    const addSingleScore = () => {
-        setScoreData(arr => [...arr, {
-            id: num,
-            score: 0,
-            questionInput: "",
-            option1: "",
-            option2: "",
-            option3: "",
-            option4: "",
-            correctAnswer: 0
+    const handleAutoObj = () => {
+        let arr = [];
+        const question = (id) => {
+            return {
+                id: id+1,
+                score: 0,
+                questionInput: "",
+                imageSrc:"",
+                voiceSrc:"",
+                options: [
+                    {
+                        option_number: 1,
+                        correct: 1,
+                        body: ""
+                    },
+                    {
+                        option_number: 2,
+                        correct: 0,
+                        body: ""
+                    },
+                    {
+                        option_number: 3,
+                        correct: 0,
+                        body: ""
+                    },
+                    {
+                        option_number: 4,
+                        correct: 0,
+                        body: ""
+                    },
+                ]
+            }
         }
-        ])
-        setNum(prev => prev + 1)
+        for (let i = 0; i < +props.amount; i++) {
+            arr.push(question(i));
+        }
+        setScoreData(arr)
     }
+    useEffect(()=>{
+        handleAutoObj();
+    },[])
 
     function sumHandler(sum) {
         props.scoreSum(sum)
@@ -195,9 +213,6 @@ const CustomMultiChoiceQuestion = (props) => {
             {scoreData.map((el) =>
                 <MultiChoiceComponent id={el.id} score={el.score} sumHandler={sumHandler} />
             )}
-            <div className='add-question--button' onClick={() => addSingleScore()}>
-                <button id='submitBtn'>+ اضافه کردن سوال</button>
-            </div>
         </div>
     )
 }

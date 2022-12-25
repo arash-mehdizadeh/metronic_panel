@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Table = (props) => {
+const TableComponent = (props) => {
     return (
         <table>
             <tr>
@@ -42,4 +42,4 @@ const Table = (props) => {
     )
 }
 
-export default Table
+export default TableComponent;

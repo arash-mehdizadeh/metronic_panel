@@ -1,0 +1,87 @@
+@import './variables';
+
+
+@mixin border($border:$bs-gray-600) {
+    border:1px solid $border;
+}
+@mixin border-bottom($border:$bs-gray-600) {
+    border-bottom:1px solid $border;
+}
+@mixin form-title {
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+@mixin checkbox {
+    margin-left: 6px;
+    width: 15px !important;
+    height: 15px !important;
+}
+
+@mixin form-add-button{
+        display: flex;
+        background-color: $bs-blue;
+        font-size: 14px;
+        color: #fff;
+        padding: 10px 25px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+}
+
+@mixin button ($backgroundColor ,$color:#fff) {
+    all: unset;
+    background-color: $backgroundColor;
+    color: $color;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+@mixin default-input-style($inputWidth:100%){
+    width: $inputWidth;
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: transparent;
+    border:  1px solid;
+    border-color: $bs-gray-600;
+    color: #5e6278;
+    transition: color .2s ease,background-color .2s ease;
+}
+
+@mixin primary-box {
+    padding: 20px   ;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+}
+
+@mixin secondary-input-style($inputWidth:100%){
+    width: $inputWidth;
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+    background-color: #eef3f7;
+    border:  1px solid;
+    border-color: #eef3f7;
+    color: #5e6278;
+    transition: color .2s ease,background-color .2s ease;
+}
+
+@mixin test-button-option {
+    color:$bs-gray-700;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    width: 40px;
+    height: 40px;
+    @include border();
+    border-radius: 100%;
+    margin: 5px;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}

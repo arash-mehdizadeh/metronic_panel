@@ -14,12 +14,12 @@
 
 .test-formScore--list{
     width: fit-content;
-    padding: 12.5px ;
+    padding: 27.5px ;
     .test-formScore--container{
         display: flex;
         align-items: center;
         .form-input--secondary{
-            @include default-styles(60px);
+            @include default-styles(80px);
         }
         span{
             margin-right: 10px;

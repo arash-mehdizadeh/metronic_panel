@@ -13,7 +13,7 @@ import AddUserToExamList from './pages/addUserToJoinList/addUserToExamList/addUs
 import AddTeacherToExamList from './pages/addUserToJoinList/addTeacherToExamList/addTeacherToExamList';
 import DescriptiveExamCorrection from './pages/examCorrection/descriptiveExamCorrection/descriptiveExamCorrection';
 import PdfUploadableExamCorrection from './pages/examCorrection/pdfUploadableExamCorrection/pdfUploadableExamCorrection';
-import { MultichoiceCorrectionComponent, TestCorrectionComponent } from './components/correctionComponents/multichoiceCorrectionComponent/multichoiceCorrectionComponent';
+import { MultichoiceCorrectionComponent, TestCorrectionComponent } from './components/correctionComponents/multichoiceCorrectionComponent';
 
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard'));
@@ -36,7 +36,8 @@ const Routing = () => {
                         <SuperUser/>
                     </Suspense>
                 } />
-                <Route path="/create-exam" element={
+
+                <Route path="/admin/quizzes" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddExamList/>
                     </Suspense>
@@ -46,27 +47,27 @@ const Routing = () => {
                         <ExamFormDetail/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/pdf-descriptive/:quiz_id/:code" element={
+                <Route path="/create-exam/pdf-descriptive/:qu_amount/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <PdfUploadableExam/>
                     </Suspense>
                 } />
-                        <Route path="/create-exam/pdf-test/:quiz_id/:code" element={
+                        <Route path="/create-exam/pdf-test/:qu_amount/:quiz_id/:code" element={
                             <Suspense fallback={<>loading...</>} >
                                 <TestExam/>
                             </Suspense>
                         } />
-                <Route path="/create-exam/custom-test/:quiz_id/:code" element={
+                <Route path="/create-exam/custom-test/:qu_amount/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomMultiChoiceExam/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/custom-descriptive/:quiz_id/:code" element={
+                <Route path="/create-exam/custom-descriptive/:qu_amount/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomDescriptiveExam/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/addUsersToJoinExam" element={
+                <Route path="/create-exam/addUsersToJoinExam/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddUserToExamList />
                     </Suspense>
@@ -76,7 +77,7 @@ const Routing = () => {
                         <AddTeacherToExamList />
                     </Suspense>
                 } />
-                <Route path="/correction/descriptive/:quiz_id/:code" element={
+                <Route path="/correction/custom-descriptive/:quiz_id/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <DescriptiveExamCorrection />
                     </Suspense>

@@ -72,3 +72,10 @@
     margin-bottom: 16px;
     border-bottom: 1px solid $bs-gray-600;
 }
+.align-text{
+    display: flex;
+    align-items: center;
+    :first-child{
+        margin-left: 5px;
+    }
+}

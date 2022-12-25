@@ -81,7 +81,6 @@ const SuperUser = () => {
                     <div className='transaction-container'>
                         <div className='transaction-record-sidebox'>
                             <div className='transaction-detail-container'>
-
                                 <div className='transaction-buttons-container deactive-relative-box'>
                                     <div className='primary-box box-1'>
                                         <span><Add /></span>

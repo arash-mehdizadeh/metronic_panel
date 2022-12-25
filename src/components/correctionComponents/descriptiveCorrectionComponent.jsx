@@ -62,7 +62,7 @@ const DescriptiveCorrectionComponent = () => {
         <div className='descriptive-question--container' key={id}>
             <form onSubmit={handleOnSubmit} className='descriptive-question' >
                 <div className='question-scoring--container'>
-                    <p className='input-title input--scoring-custom'>سوال {id} :</p>
+                    <p className='input-title input--scoring-custom' style={{width : "50px"}}>سوال {id} :</p>
                 </div>
                 <div className='descriptive-question--detail'>
                     <div className='descriptive-question--detail-container'>

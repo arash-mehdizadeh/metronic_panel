@@ -99,8 +99,9 @@ const AddingExamForm = () => {
         }
         console.log(formStoreData);
         const res = await quizCreateAPI(formStoreData)
+        console.log(res.data);
         if(res?.status === "success"){
-            navigate(`/create-exam/${res?.data.question_type}-${res?.data.type}/${res?.data.id}/${res?.data.code}`);
+            navigate(`/create-exam/${res?.data.question_type}-${res?.data.type}/${res?.data.number_of_question}/${res?.data.id}/${res?.data.code}`);
         }
         else{
             alert(res?.status)
@@ -225,6 +226,7 @@ const AddingExamForm = () => {
                                     placeholder="انتخاب تاریخ"
                                     format="jYYYY-jMM-jDD"
                                     id="dateTimePicker"
+                                    
                                     onChange={examStartDateHandler}
                                 />
                             </label>

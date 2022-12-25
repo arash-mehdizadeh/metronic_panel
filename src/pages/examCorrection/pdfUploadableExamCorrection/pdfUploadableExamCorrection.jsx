@@ -7,107 +7,49 @@ import { ReactComponent as ArrowMenu } from '../../../assets/icons/arrows/arr079
 import { ReactComponent as DashboardSvg } from '../../../assets/icons/menu/dashboard.svg';
 
 import '../../../App.scss';
+import Layout from '../../../layout/layout';
 
 
 const PdfUploadableExamCorrection = () => {
 
-    const [hoverMenu, setHoverMenu] = useState(false);
-    const [activeMenu, setActiveMenu] = useState(false);
-    const openMenu = () => {
-        document.getElementById("sidebar").style.width = "265px";
+    const [sum, setSum] = useState(0);
+
+    function scoreSum(data) {
+        setSum(data)
     }
-    const closeMenu = () => {
-        document.getElementById("sidebar").style.width = "75px";
-    }
+
     return (
-        <div className="app_container" >
-            <div className="container" style={{ paddingRight: activeMenu ? "75px" : "265px" }}>
-                <div className='sidebar' onMouseEnter={() => { activeMenu && openMenu(); activeMenu && setHoverMenu(false) }}
-                    onMouseLeave={() => { activeMenu && closeMenu(); activeMenu && setHoverMenu(true) }} id='sidebar'>
-                    <div className='sidebar-header'>
-                        <div style={{ display: `${hoverMenu ? "none" : ""}` }}>ICON</div>
-                        <div onClick={() => setActiveMenu(perv => !perv)} className={`menu-arrow ${activeMenu ? "active-arrow" : "staible-menu"}`}>
-                            <ArrowMenu />
+        <Layout>
+            <div className='transaction-container'>
+                <div className='transaction-record-sidebox'>
+                    <div className='transaction-detail-container'>
+                        <div className='user--exam-name' >
+                            <p>پاسخبرگ کاربر :</p>
+                            <p>ممد نوبری</p>
+                        </div>
+                        <div>
+                            <p>جمع کل نمره کاربر : {sum}</p>
                         </div>
                     </div>
-                    <div className="menu-link-container">
-                        <MenuLinks title={"داشبورد"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"مدیران (آموزشگاه ها)"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"کاربران"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"اتاق ها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"اتاق های ضبط شده"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"اتاق های درحال برگزاری"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"سرورها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"دسته بندی سرورها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"اطلاعیه ها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"سطوح دسترسی و تخصیص مقام"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"فرم مشاوره"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"بلاگ"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"سرویس ها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"تخفیف ها"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"سوابق مالی"} icon={<DashboardSvg />} />
-
-                        {/* <MenuLinks title={"ارسال پیامک"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"خرید ,تمدید و ارتقاء"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"سوابق مالی"} icon={<DashboardSvg />} />
-                        <MenuLinks title={"آزمون ها"} icon={<DashboardSvg />} /> */}
+                    <div className='transaction-filter-box'>
+                        <div>
+                            <p>
+                                دانلود PDF سوالات
+                            </p>
+                        </div>
+                        <label>
+                            <input type="checkbox" className='' />
+                            نمایش کارنامه و نمره به کاربر
+                        </label>
+                        <div className=''>تصحیح شد</div>
                     </div>
                 </div>
-                {/* header side */}
-                <header>
-                    <div className='user-details'>
-                        <ul>
-                            <li>search</li>
-                            <li>status</li>
-                            <li>notifs</li>
-                            <li>message</li>
-                            <li>dashboard</li>
-                            <li>dark/light</li>
-                            <li>profile pic</li>
-                        </ul>
-                    </div>
-                    <div className='page-details'>
-                        <h2>ایجاد آزمون / بارم دهی سوالات</h2>
-                        <div className='filter-btn'>
-                            <p>filter</p>
-                            <p>makin</p>
-                        </div>
-                    </div>
-                </header>
-                {/* main secetion */}
-                <main className={`component-container ${activeMenu ? "main-full" : ''}`}>
-                    <div className='transaction-container'>
-                        <div className='transaction-record-sidebox'>
-                            <div className='transaction-detail-container'>
-                                <div className='user--exam-name' >
-                                    <p>پاسخبرگ کاربر :</p>
-                                    <p>ممد نوبری</p>
-                                </div>
-                                <div>
-                                    <p>جمع کل نمره کاربر : {85}</p>
-                                </div>
-                            </div>
-                            <div className='transaction-filter-box'>
-                                <div>
-                                    <p>
-                                        دانلود PDF سوالات
-                                    </p>
-                                </div>
-                                <label>
-                                    <input type="checkbox" className='' />
-                                    نمایش کارنامه و نمره به کاربر
-                                </label>
-                                <div className=''>تصحیح شد</div>
-                            </div>
-                        </div>
-                        <div className="transaction-list-container active-primary-box">
-                            {/* < /> */}
-                            <PdfUploadableCorrectionComponent />
-                        </div>
-                    </div>
-                </main>
+                <div className="transaction-list-container active-primary-box">
+                    {/* < /> */}
+                    <PdfUploadableCorrectionComponent isCorrection sumHandler={scoreSum} />
+                </div>
             </div>
-        </div >
+        </Layout>
     )
 }
 
