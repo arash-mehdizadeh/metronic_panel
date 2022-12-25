@@ -22,6 +22,8 @@ const CustomMultiChoiceExam = () => {
                 <div className='transaction-record-sidebox'>
                     <div className='transaction-filter-box'>
                         <div><p>{`مجموع بارم سوالات : ${sum}`}</p></div>
+                        <button>ثبت  و ادامه</button>
+
                     </div>
                 </div>
                 <div className="transaction-list-container active-primary-box">

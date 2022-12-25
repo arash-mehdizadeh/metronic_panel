@@ -9,6 +9,7 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
 
     const [value, setValue] = useState("");
     const [question, setQuestion] = useState("");
+    const [isUpload, setIsUpload] = useState(false);
 
     const handleOnChange = (e) => {
         setValue(e.target.value);
@@ -18,7 +19,7 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
     };
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        
+
     };
 
 
@@ -32,7 +33,7 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
                 </div>
             </div>
             <div className='descriptive-question--detail'>
-                <textarea className='input--textarea' rows="15" value={question}  onChange={handleQuestionChange} placeholder='سوال را اینجا بنویسید ...' />
+                <textarea className='input--textarea' rows="15" value={question} onChange={handleQuestionChange} placeholder='سوال را اینجا بنویسید ...' />
                 <div></div>
                 <div></div>
                 <div className='descriptive-question--upload-container'>
@@ -40,6 +41,7 @@ const DescriptiveQuestionComponent = ({ id, score }) => {
                     <div className='primary-box box--upload-audio'>بارگذاری صوت</div>
                 </div>
                 <div className='descriptive-question--submitBtn'>
+                    <>{isUpload ? <p>سوال با موفقیت ثبت شد</p> : <p></p> }</>
                     <button type='submit' id='submitBtn'>ثبت</button>
                 </div>
             </div>
@@ -95,7 +97,7 @@ const DescriptiveQuestion = () => {
     };
 
 
-    
+
     const addSingleScore = () => {
         setScoreData(arr => [...arr, {
             id: num,
@@ -103,7 +105,7 @@ const DescriptiveQuestion = () => {
             questionInput: "",
         }
         ])
-        setNum(prev => prev+1)
+        setNum(prev => prev + 1)
     }
 
     return (

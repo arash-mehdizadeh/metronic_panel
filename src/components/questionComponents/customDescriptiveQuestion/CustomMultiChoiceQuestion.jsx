@@ -12,6 +12,8 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
     const [value, setValue] = useState("");
     const [question, setQuestion] = useState("");
     const [correctOption, setCorrectOption] = useState(0)
+    const [isUpload, setIsUpload] = useState(false);
+
 
     const { register ,getValues ,handleSubmit } = useForm();
 
@@ -21,17 +23,13 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
             abc += +input.value;
         });
         sumHandler(abc);
-    },[value])
+    })
 
-    const handleOnChange = (e) => {
-        setValue(e.target.value);
-    };
+
     const handleOptionChange = (id) => {
         setCorrectOption(id);
     };
-    const handleQuestionChange = (e) => {
-        setQuestion(e.target.value);
-    };
+
     const handleOnSubmit = (event) => {
         // event.preventDefault();
         if(correctOption === 0){
@@ -136,6 +134,7 @@ const MultiChoiceComponent = ({ id, score ,sumHandler }) => {
 
                 </div>
                 <div className='descriptive-question--submitBtn'>
+                <>{isUpload ? <p>سوال با موفقیت ثبت شد</p> : <p></p> }</>
                     <button type='submit' id='submitBtn'>ثبت</button>
                 </div>
             </div>

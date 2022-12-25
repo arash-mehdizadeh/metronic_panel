@@ -17,7 +17,7 @@ const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler, sumH
         setValue(event.target.value);
 
     };
-    
+
 
     useEffect(() => {
         var abc = 0;
@@ -38,7 +38,7 @@ const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler, sumH
         <li className='test-formScore--list' key={id}>
             <div className='test-formScore--container'>
                 <input value={value} onChange={handleOnChange} type="number" id='descriptive-pdf--input-score' className='form-input--secondary' />
-                <span onClick={() => {deleteHandler(id);}}>X</span>
+                <span onClick={() => { deleteHandler(id); }}>X</span>
             </div>
         </li>
     )

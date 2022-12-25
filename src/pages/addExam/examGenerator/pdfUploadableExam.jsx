@@ -18,7 +18,7 @@ const PdfUploadableExam = () => {
         <Layout>
             <div className='transaction-container'>
                 <div className='transaction-record-sidebox'>
-                    
+
                     <div className='transaction-filter-box'>
                         <div><p>{`مجموع بارم سوالات : ${sum}`}</p></div>
                         <div className='filter-input-container'>
@@ -28,6 +28,9 @@ const PdfUploadableExam = () => {
                             </div>
                         </div>
                         <p id='reset-btn'>حذف فایل</p>
+                        <div>
+                            <button>ثبت سوالات</button>
+                        </div>
                     </div>
                 </div>
                 <div className="transaction-list-container active-primary-box">
