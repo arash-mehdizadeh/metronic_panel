@@ -75,23 +75,23 @@ const AddingExamForm = () => {
             return user;
         }, [])
     });
-    
 
-    const setExamData = async(props) => {
+
+    const setExamData = async (props) => {
         const formStoreData = {
             title: props.title,
             number_of_question: props.number_of_question,
             type: activeExamType,
             test_type: activeExamType === "descriptive" ? "score" : activeTypeTest,
-            negative_point: negativeAnswer === "false" ? null : props.negative_point,
+            negative_point: negativeAnswer === "false" || activeTypeTest === "score" || activeExamType === "descriptive"  ? null : props.negative_point,
             date: examDate === "anyDate" ? null : examStartDate,
             start_time_from: enterTime !== "specified" ? null : props.start_time_from,
             start_time_to: enterTime !== "specified" ? null : props.start_time_to,
             end_time: endTime === "end_time" ? props.end_time : null,
             duration: endTime === "duration" ? props.duration : null,
             show_result: examResult,
-            show_result_from: examResult === "range" ? showResultDate +" " + props.show_result_from_time : null,
-            show_result_to: examResult === "range" ? showResultDate +" " + props.show_result_from_time : null,
+            show_result_from: examResult === "range" ? showResultDate + " " + props.show_result_from_time : null,
+            show_result_to: examResult === "range" ? showResultDate + " " + props.show_result_from_time : null,
             question_type: props.questionType,
             guest: props.guest ? 1 : 0,
             leave: props.leave ? 1 : 0,
@@ -99,11 +99,11 @@ const AddingExamForm = () => {
         }
         console.log(formStoreData);
         const res = await quizCreateAPI(formStoreData)
-        console.log(res.data);
-        if(res?.status === "success"){
-            navigate(`/create-exam/${res?.data.question_type}-${res?.data.type}/${res?.data.number_of_question}/${res?.data.id}/${res?.data.code}`);
+        // console.log(res.data);
+        if (res?.status === "success") {
+            navigate(`/create-exam/${res?.data.question_type}-${res?.data.type}/${res?.data.code}?amount=${res?.data.number_of_question}&qid=${res?.data.id}${res?.data.test_type === "rank" ? "&rank=true" : ""}`);
         }
-        else{
+        else {
             alert(res?.status)
         }
         console.log(res);
@@ -182,7 +182,7 @@ const AddingExamForm = () => {
 
                         </div>
                     </div>
-                    <div className='form-input-radio--container'>
+                    <div className='form-input-radio--container' style={{ display: activeExamType === "descriptive" || activeTypeTest === "score"  ? "none" : "flex" }} >
                         <p className='form-title'>ضریب منفی تست :</p>
                         <div className='radio--container'>
 
@@ -226,7 +226,7 @@ const AddingExamForm = () => {
                                     placeholder="انتخاب تاریخ"
                                     format="jYYYY-jMM-jDD"
                                     id="dateTimePicker"
-                                    
+
                                     onChange={examStartDateHandler}
                                 />
                             </label>
@@ -344,7 +344,7 @@ const AddingExamForm = () => {
                             <p><span>icon</span>در صورت فعال بودن این گزینه ,در صورتی که کاربر آزمون را ترک کند زمان باقی مانده آزمون برای وی محفوظ تا زمانی که بتواند وارد آزمون شود</p>
                         </div>
                     </div>
-                    <div className='exam-form-option--container' style={{alignItems:"center"}}>
+                    <div className='exam-form-option--container' style={{ alignItems: "center" }}>
                         <div className="switch">
                             <span>
                                 <input

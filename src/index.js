@@ -11,7 +11,7 @@ import TestExam from './pages/addExam/examGenerator/testExam';
 import ExamFormDetail from './pages/addExam/examFormDetail/examFormDetail';
 import AddUserToExamList from './pages/addUserToJoinList/addUserToExamList/addUserToExamList';
 import AddTeacherToExamList from './pages/addUserToJoinList/addTeacherToExamList/addTeacherToExamList';
-import DescriptiveExamCorrection from './pages/examCorrection/descriptiveExamCorrection/descriptiveExamCorrection';
+import DescriptiveCorrection from './pages/examCorrection/descriptiveExamCorrection/descriptiveExamCorrection';
 import PdfUploadableExamCorrection from './pages/examCorrection/pdfUploadableExamCorrection/pdfUploadableExamCorrection';
 import { MultichoiceCorrectionComponent, TestCorrectionComponent } from './components/correctionComponents/multichoiceCorrectionComponent';
 
@@ -47,27 +47,27 @@ const Routing = () => {
                         <ExamFormDetail/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/pdf-descriptive/:qu_amount/:quiz_id/:code" element={
+                <Route path="/create-exam/pdf-descriptive/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <PdfUploadableExam/>
                     </Suspense>
                 } />
-                        <Route path="/create-exam/pdf-test/:qu_amount/:quiz_id/:code" element={
+                        <Route path="/create-exam/pdf-test/:code" element={
                             <Suspense fallback={<>loading...</>} >
                                 <TestExam/>
                             </Suspense>
                         } />
-                <Route path="/create-exam/custom-test/:qu_amount/:quiz_id/:code" element={
+                <Route path="/create-exam/custom-test/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomMultiChoiceExam/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/custom-descriptive/:qu_amount/:quiz_id/:code" element={
+                <Route path="/create-exam/custom-descriptive/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <CustomDescriptiveExam/>
                     </Suspense>
                 } />
-                <Route path="/create-exam/addUsersToJoinExam/:quiz_id/:code" element={
+                <Route path="/create-exam/addUsersToJoinExam/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <AddUserToExamList />
                     </Suspense>
@@ -77,22 +77,22 @@ const Routing = () => {
                         <AddTeacherToExamList />
                     </Suspense>
                 } />
-                <Route path="/correction/custom-descriptive/:quiz_id/:code" element={
+                <Route path="/correction/custom-descriptive/:code" element={
                     <Suspense fallback={<>loading...</>} >
-                        <DescriptiveExamCorrection />
+                        <DescriptiveCorrection />
                     </Suspense>
                 } />
-                <Route path="/correction/pdf-descriptive/:quiz_id/:code" element={
+                <Route path="/correction/pdf-descriptive/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <PdfUploadableExamCorrection />
                     </Suspense>
                 } />
-                <Route path="/correction/pdf-test/:quiz_id/:code" element={
+                <Route path="/correction/pdf-test/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <TestCorrectionComponent />
                     </Suspense>
                 } />
-                <Route path="/correction/custom-test/:quiz_id/:code" element={
+                <Route path="/correction/custom-test/:code" element={
                     <Suspense fallback={<>loading...</>} >
                         <MultichoiceCorrectionComponent />
                     </Suspense>

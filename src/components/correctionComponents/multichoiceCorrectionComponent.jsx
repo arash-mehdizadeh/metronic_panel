@@ -1,7 +1,9 @@
 import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import Layout from '../../layout/layout';
+import { SidebarAction, SidebarInfo } from '../correction-sidebar/correction-sidebar';
 import CustomMultiChoiceQuestion from '../questionComponents/customDescriptiveQuestion/CustomMultiChoiceQuestion';
+import TableComponent from '../table/table';
 
 
 // import './descriptiveQuestion.scss';
@@ -23,29 +25,11 @@ const TestCorrectionComponent = () => {
         <Layout>
             <div className='transaction-container'>
                 <div className='transaction-record-sidebox'>
-                    <div className='transaction-detail-container'>
-                        <div className='user--exam-name' >
-                            <p>پاسخبرگ کاربر :</p>
-                            <p>ممد نوبری</p>
-                        </div>
-                        <div>
-                            <p>جمع کل نمره کاربر : {sum}</p>
-                        </div>
-                    </div>
-                    <div className='transaction-filter-box'>
-                        <div>
-                            <p>
-                                دانلود PDF سوالات
-                            </p>
-                        </div>
-                        <label>
-                            <input type="checkbox" className='' />
-                            نمایش کارنامه و نمره به کاربر
-                        </label>
-                        <div className=''>تصحیح شد</div>
-                    </div>
+                    <SidebarInfo />
+                    <SidebarAction isPdf />
                 </div>
                 <div className="transaction-list-container active-primary-box">
+                <TableComponent headerData={["زمان ورود به آزمون","صحیح","غلط","پاسخ نداده","ضریب منفی","نمره"]} />
                     <CustomMultiChoiceQuestion isCorrection sumHandler={scoreSum} />
                 </div>
             </div>
@@ -59,29 +43,11 @@ const MultichoiceCorrectionComponent = () => {
         <Layout>
             <div className='transaction-container'>
                 <div className='transaction-record-sidebox'>
-                    <div className='transaction-detail-container'>
-                        <div className='user--exam-name' >
-                            <p>پاسخبرگ کاربر :</p>
-                            <p>ممد نوبری</p>
-                        </div>
-                        <div>
-                            <p>جمع کل نمره کاربر : {85}</p>
-                        </div>
-                    </div>
-                    <div className='transaction-filter-box'>
-                        <div>
-                            <p>
-                                دانلود PDF سوالات
-                            </p>
-                        </div>
-                        <label>
-                            <input type="checkbox" className='' />
-                            نمایش کارنامه و نمره به کاربر
-                        </label>
-                        <div className=''>تصحیح شد</div>
-                    </div>
+                    <SidebarInfo />
+                    <SidebarAction />
                 </div>
                 <div className="transaction-list-container active-primary-box">
+                    <TableComponent headerData={["زمان ورود به آزمون","صحیح","غلط","پاسخ نداده","ضریب منفی","نمره"]} />
                     its should be custom multichoice modified component
                 </div>
             </div>

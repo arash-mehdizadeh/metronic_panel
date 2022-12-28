@@ -2,43 +2,30 @@ import React from 'react'
 
 const TableComponent = (props) => {
     return (
-        <table>
-            <tr>
+        <>
+            <table>
+                <thead>
+                    {
+                        props.headerData.map((el, index) => (
+                            <th key={index} className='table-header'><p>{el}</p></th>
+                            // <th key={index}>{el}</th>
+                        ))
+                    }
+                </thead>
                 {
-                    props.headerData.map((el, index) => (
-                        <th key={index}>{el}</th>
-                    ))
+                    props.tableData ?
+                        <tbody>
+                            {
+                                props.tableData.map((el, index) => (
+                                    <td key={index} className='table-body' >{el}</td>
+                                ))
+                            }
+                        </tbody>
+                        : <></>
                 }
-            </tr>
-            <tr>
-                {
-                    props.tableData ? props.tableData.map((el,index) => (
-                        <td key={index}>{el}</td>
-                    )) : <p>هیچ رکوردی وجود ندارد</p>
-                }
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>مهندسی روانشناسی تکنیکال</td>
-                <td>
-                    <p>56/11/23</p>
-                    <p>18:00</p>
-                </td>
-                <td>
-                    <p>56/11/23</p>
-                    <p>18:00</p>
-                </td>
-                <td>ویرایش</td>
-                <td>حذف و اضافه</td>
-                <td>کپی لینک</td>
-                <td>فعال</td>
-                <td>مشاهده</td>
-                <td>
-                    <p>پیشنمایش</p>
-                    <p>see edit msg</p>
-                </td>
-            </tr>
-        </table>
+            </table>
+            {/* {!props.tableData && <p id='no-recored--text'>هیچ رکوردی وجود ندارد</p>} */}
+        </>
     )
 }
 

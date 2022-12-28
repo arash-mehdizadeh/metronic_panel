@@ -17,7 +17,7 @@ const SidebarInfo = (props) => {
 const SidebarAction = (props) => {
     return (
         <div className='transaction-filter-box'>
-            <p id='text--download'>دانلود PDF سوالات</p>
+            { props.isPdf && <p id='text--download'>دانلود PDF سوالات</p>}
             <label className='checkbox--container'>
                 <input type="checkbox" className='input-checkbox' />
                 نمایش کارنامه و نمره به کاربر

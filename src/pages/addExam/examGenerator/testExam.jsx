@@ -7,7 +7,7 @@ import '../../../App.scss';
 import Layout from '../../../layout/layout';
 import { useRef } from 'react';
 import { postFormData, storeFileURL } from '../../../assets/api/createExamAPI';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const TestExam = () => {
 
@@ -31,9 +31,9 @@ const TestExam = () => {
     
     const onSubmitHandler = async(e) =>{
         e.preventDefault();
-        const dataFile = new FormData();
-        dataFile.append("file", file);
-        await postFormData(dataFile).then(res => { formDataRes(res.data) }) 
+        // const dataFile = new FormData();
+        // dataFile.append("file", file);
+        // await postFormData(dataFile).then(res => { formDataRes(res.data) }) 
     }
 
     const onFileChangeHandler = (event) => {
@@ -66,7 +66,7 @@ const TestExam = () => {
                         </div>
                         <p id='reset-btn' onClick={()=> onFileDeleteHandler()} >حذف فایل</p>
                         <foem onSubmit={handleSubmitQuestion}>
-                            <button id='confirm-btn'>ثبت و ادامه</button>
+                            <button type='submit' id='confirm-btn'>ثبت و ادامه</button>
                         </foem>
                     </div>
                 </form>

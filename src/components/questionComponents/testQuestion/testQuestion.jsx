@@ -1,11 +1,11 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { useState, useMemo, useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useParams ,useSearchParams } from 'react-router-dom';
+
 
 import './testQuestion.scss';
 
-const TestInput = ({ id, score, options, deleteHandler, updateScoreHandler, updateOptionHandler, sumHandler }) => {
+const TestInput = ({ id, score, options, deleteHandler, isRank, updateScoreHandler, updateOptionHandler, sumHandler }) => {
 
     const [value, setValue] = useState(score);
     // const [optionBtn, setOptionBtn] = useState(options);
@@ -46,7 +46,7 @@ const TestInput = ({ id, score, options, deleteHandler, updateScoreHandler, upda
                         ))
                     }
                 </div>
-                <input value={value} onChange={handleOnChange} type="number" min="0" step="0.25" id='form-input-score' className='form-input--secondary' />
+                { isRank === "true"? <></> : <input value={value} onChange={handleOnChange} type="number" min="0" step="0.25" id='form-input-score' className='form-input--secondary' />}
             </div>
         </li>
     )
@@ -101,8 +101,13 @@ const TestCorrectionInput = ({ id, score, options, deleteHandler, updateScoreHan
 
 const TestQuestion = (props) => {
     // const params = useParams()
+    let [searchParams, setSearchParams] = useSearchParams();
+    const [data, setData] = useState([]); 
 
-    const [data, setData] = useState([]);
+
+    const amount = searchParams.get("amount");
+    const id = searchParams.get("qid");
+    const isRank = searchParams.get("rank");
 
     const handleAutoObj = () => {
         let arr = [];
@@ -113,7 +118,7 @@ const TestQuestion = (props) => {
                 options: [
                     {
                         option_number: 1,
-                        correct: 1,
+                        correct: 0,
                         body: null
                     },
                     {
@@ -134,7 +139,7 @@ const TestQuestion = (props) => {
                 ]
             }
         }
-        for (let i = 0; i < +props.amount; i++) {
+        for (let i = 0; i < +amount; i++) {
             arr.push(question(i));
         }
         setData(arr)
@@ -167,9 +172,6 @@ const TestQuestion = (props) => {
 
     function sumHandler(sum) {
         props.scoreSum(sum)
-    }
-    function dataHandler(sum) {
-        props.questions(sum)
     }
 
     useEffect(() => {
@@ -210,7 +212,7 @@ const TestQuestion = (props) => {
                                 :   data.map(el =>
                                 (
                                     <TestInput id={el.question_number} options={el.options} score={el.score}
-                                        updateScoreHandler={updateScoreHandler} //  deleteHandler={deleteHandler}
+                                        updateScoreHandler={updateScoreHandler}  isRank={isRank} //  deleteHandler={deleteHandler}
                                         updateOptionHandler={updateOptionHandler} sumHandler={sumHandler}
                                     />
                                 )
