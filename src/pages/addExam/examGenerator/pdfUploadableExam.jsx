@@ -5,14 +5,19 @@ import PdfUploadable from '../../../components/questionComponents/customDescript
 import '../../../App.scss';
 import Layout from '../../../layout/layout';
 import { useParams } from 'react-router-dom';
+import { useRef } from 'react';
 
 
 const PdfUploadableExam = () => {
     const params = useParams()
     const [sum, setSum] = useState(0);
-
+    const childRef = useRef()
     function scoreSum(data) {
         setSum(data)
+    }
+
+    function onSubmitHandler() {
+        // if it was Rank ,should nullish the score
     }
 
     return (
@@ -35,7 +40,7 @@ const PdfUploadableExam = () => {
                     </div>
                 </div>
                 <div className="transaction-list-container active-primary-box">
-                    <PdfUploadable scoreSum={scoreSum} amount={params.qu_amount} />
+                    <PdfUploadable scoreSum={scoreSum} ref={childRef} amount={params.qu_amount} />
                 </div>
             </div>
         </Layout>

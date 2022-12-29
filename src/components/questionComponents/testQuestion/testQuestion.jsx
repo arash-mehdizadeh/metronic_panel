@@ -1,23 +1,29 @@
+import { useImperativeHandle } from 'react';
+import { useRef } from 'react';
+import { forwardRef } from 'react';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams ,useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 import './testQuestion.scss';
 
-const TestInput = ({ id, score, options, deleteHandler, isRank, updateScoreHandler, updateOptionHandler, sumHandler }) => {
-
+const TestInput = (props, ref) => {
+    const { id, score, options, handleData, deleteHandler, isRank, updateScoreHandler, updateOptionHandler, sumHandler } = props;
     const [value, setValue] = useState(score);
     // const [optionBtn, setOptionBtn] = useState(options);
     const [optionBtn, setOptionBtn] = useState(0);
 
     const handleOptionChange = (btnID) => {
         setOptionBtn(btnID);
+        console.log(btnID);
         updateOptionHandler(id, btnID)
     };
     const handleOnChange = (event) => {
         setValue(event.target.value);
     };
+
 
 
     useEffect(() => {
@@ -38,19 +44,22 @@ const TestInput = ({ id, score, options, deleteHandler, isRank, updateScoreHandl
             <div className='test-form-score--container'>
                 <div className='test-options--container'>
                     {
-                        options?.map((el) => 
+                        options?.map((el) =>
                         (<>
                             {/* {el.correct === 1 && handleOptionChange(el.option_number)} */}
                             <div key={el.option_number} onClick={() => { handleOptionChange(el.option_number); }} className={`test-option--button ${optionBtn == el.option_number ? "active-option-btn" : ""} `}>{el.option_number}</div>
-                            </>
+                        </>
                         ))
                     }
                 </div>
-                { isRank === "true"? <></> : <input value={value} onChange={handleOnChange} type="number" min="0" step="0.25" id='form-input-score' className='form-input--secondary' />}
+                {isRank === "true" ? <></> : <input value={value} onChange={handleOnChange} type="number" min="0" step="0.25" id='form-input-score' className='form-input--secondary' />}
             </div>
         </li>
     )
 }
+
+
+
 const TestCorrectionInput = ({ id, score, options, deleteHandler, updateScoreHandler, updateOptionHandler, sumHandler }) => {
 
     const [value, setValue] = useState(score);
@@ -84,11 +93,11 @@ const TestCorrectionInput = ({ id, score, options, deleteHandler, updateScoreHan
             <div className='test-form-score--container'>
                 <div className='test-options--container'>
                     {
-                        options?.map((el) => 
+                        options?.map((el) =>
                         (<>
                             {/* {el.correct === 1 && handleOptionChange(el.option_number)} */}
                             <div key={el.option_number} onClick={() => { handleOptionChange(el.option_number); }} className={`test-option--button ${optionBtn == el.option_number ? "active-option-btn" : ""} `}>{el.option_number}</div>
-                            </>
+                        </>
                         ))
                     }
                 </div>
@@ -99,15 +108,51 @@ const TestCorrectionInput = ({ id, score, options, deleteHandler, updateScoreHan
 }
 
 
-const TestQuestion = (props) => {
+const TestQuestion = forwardRef((props, ref) => {
     // const params = useParams()
-    let [searchParams, setSearchParams] = useSearchParams();
-    const [data, setData] = useState([]); 
+    let [searchParams] = useSearchParams();
+    const [data, setData] = useState([]);
+    const childRef = useRef()
 
 
     const amount = searchParams.get("amount");
     const id = searchParams.get("qid");
     const isRank = searchParams.get("rank");
+
+
+    useImperativeHandle(ref, () => ({
+        childFunction1() {
+            handleSubmitData()
+        },
+    }));
+
+
+    const handleSubmitData = () => {
+        var totalSum = 0;
+        for (let i = 0; i < data.length; i++) {
+            // console.log(data[i]);
+            if (data[i].score === 0 && !isRank) {
+                console.log("wrong score");
+            }
+            let sum = data[i].options.reduce(function (prev, current) {
+                return prev + current.correct
+            }, 0);
+            if (sum === 0) {
+                Swal.fire({
+                    icon:"warning",
+                    title:`گزینه صحیح سوال ${data[i].question_number} را انتخاب کنید.`,
+                    confirmButtonText:"باشه"
+                })
+            }
+            else {
+                totalSum += sum;
+            }
+        }
+        if(totalSum === data.length ){
+            props.questionHandle(data)
+        }
+    }
+
 
     const handleAutoObj = () => {
         let arr = [];
@@ -139,7 +184,7 @@ const TestQuestion = (props) => {
                 ]
             }
         }
-        for (let i = 0; i < +amount; i++) {
+        for (let i = 1; i <= +amount; i++) {
             arr.push(question(i));
         }
         setData(arr)
@@ -201,22 +246,22 @@ const TestQuestion = (props) => {
 
             </div> */}
             <div className='scoring-table--container'>
-                <p className='form-title' onClick={() => console.log(data) }>بارم سوالات :</p>
+                <p className='form-title'>بارم سوالات :</p>
                 <div className='scoring-section'>
                     {/* <div className='scoring-table-header form-title' style={{ margin: 0 }}>#  بارم</div> */}
                     <div className='scoring-table'>
                         <ul className='test--table'>
                             {
-                                props.isCorrection ? 
-                                data
-                                :   data.map(el =>
-                                (
-                                    <TestInput id={el.question_number} options={el.options} score={el.score}
-                                        updateScoreHandler={updateScoreHandler}  isRank={isRank} //  deleteHandler={deleteHandler}
-                                        updateOptionHandler={updateOptionHandler} sumHandler={sumHandler}
-                                    />
-                                )
-                                )
+                                props.isCorrection ?
+                                    data
+                                    : data.map(el =>
+                                    (
+                                        <TestInput id={el.question_number} options={el.options} score={el.score}
+                                            updateScoreHandler={updateScoreHandler} isRank={isRank} checkEmpty={props.refresh} //  deleteHandler={deleteHandler}
+                                            updateOptionHandler={updateOptionHandler} sumHandler={sumHandler} ref={childRef} handleData={handleSubmitData}
+                                        />
+                                    )
+                                    )
                             }
                             {/* <div className='adding-test-score--container'><button id='adding-test-score--btn' onClick={() => { dispatch({ type: "addSingle" }) }}>+ اضافه </button></div> */}
                         </ul>
@@ -225,7 +270,7 @@ const TestQuestion = (props) => {
             </div>
         </div>
     )
-};
+});
 
 export default TestQuestion;
 

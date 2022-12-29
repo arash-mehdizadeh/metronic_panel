@@ -1,6 +1,9 @@
 
+import { forwardRef, useImperativeHandle } from 'react';
 import { useState, useMemo, useEffect, useReducer } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 
@@ -14,7 +17,9 @@ const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler, sumH
 
     const handleOnChange = (event) => {
         event.preventDefault()
-        setValue(event.target.value);
+        if(parseInt(event.target.value)>= 0){
+            setValue(event.target.value);
+        }
 
     };
 
@@ -37,7 +42,7 @@ const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler, sumH
     return (
         <li className='test-formScore--list' key={id}>
             <div className='test-formScore--container'>
-                <input value={value} onChange={handleOnChange} type="number" min={"0"} step={"0.25"}  id='descriptive-pdf--input-score' className='form-input--secondary' />
+                <input value={value} onChange={handleOnChange} type="number" min={"0"} required onInvalid={ e => e.target.setCustomValidity("بارم سوال را به صورت صحیح وارد کنید.")} step={"0.25"}  id='descriptive-pdf--input-score' className='form-input--secondary' />
                 {/* <span onClick={() => { deleteHandler(id); }}>X</span> */}
             </div>
         </li>
@@ -45,10 +50,12 @@ const PdfUploadableInput = ({ id, score, deleteHandler, updateScoreHandler, sumH
 }
 
 
-const PdfUploadable = (props) => {
+const PdfUploadable = forwardRef((props,ref) => {
 
     const [data, setData] = useState([]);
-
+    let [searchParams] = useSearchParams();
+    const amount = searchParams.get("amount");
+    const id = searchParams.get("qid");
 
     const handleAutoObj = () => {
         let arr = [];
@@ -58,7 +65,7 @@ const PdfUploadable = (props) => {
                 score: 0,
             }
         }
-        for (let i = 0; i < +props.amount; i++) {
+        for (let i = 0; i < amount; i++) {
             arr.push(question(i));
         }
         setData(arr)
@@ -75,10 +82,29 @@ const PdfUploadable = (props) => {
     }
 
 
+    const handleSubmitData = () => {
+        for (let i = 0; i < data.length; i++) {
+            // console.log(data[i]);
+            if (data[i].score === 0) {
+                Swal.fire({
+                    icon:"warning",
+                    title:`نمره سوال ${data[i].question_number}`
+                })
+            }
+        }
+
+    }
+
+    
+    useImperativeHandle(ref, () => ({
+        childFunction1() {
+            handleSubmitData()
+        },
+    }));
+
 
 
     useEffect(()=>{
-        // massStoreHandler(props.amount)
         handleAutoObj();
     },[])
     function sumHandler(sum) {
@@ -131,5 +157,5 @@ const PdfUploadable = (props) => {
             </div>
         </div>
     )
-}
+})
 export default PdfUploadable;

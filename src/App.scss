@@ -184,6 +184,7 @@
                         }
                         #reset-btn{
                             color: $bs-blue;
+                            cursor: pointer;
                             font-weight: 700;
                         }
                         .filter-input-container{
@@ -450,4 +451,16 @@ table{
     display: flex;
     justify-content: center;
     padding: 20px 0;
+}
+#upload--btn{
+    color: #c30a7f;
+    background-color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 2px solid #c30a7f;
+    border-radius: 25px;
+    cursor: pointer;
 }

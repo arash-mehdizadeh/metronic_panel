@@ -29,7 +29,7 @@ const TestCorrectionComponent = () => {
                     <SidebarAction isPdf />
                 </div>
                 <div className="transaction-list-container active-primary-box">
-                <TableComponent headerData={["زمان ورود به آزمون","صحیح","غلط","پاسخ نداده","ضریب منفی","نمره"]} />
+                    <TableComponent headerData={["زمان ورود به آزمون", "صحیح", "غلط", "پاسخ نداده", "ضریب منفی", "نمره"]} />
                     <CustomMultiChoiceQuestion isCorrection sumHandler={scoreSum} />
                 </div>
             </div>
@@ -47,7 +47,7 @@ const MultichoiceCorrectionComponent = () => {
                     <SidebarAction />
                 </div>
                 <div className="transaction-list-container active-primary-box">
-                    <TableComponent headerData={["زمان ورود به آزمون","صحیح","غلط","پاسخ نداده","ضریب منفی","نمره"]} />
+                    <TableComponent headerData={["زمان ورود به آزمون", "صحیح", "غلط", "پاسخ نداده", "ضریب منفی", "نمره"]} />
                     its should be custom multichoice modified component
                 </div>
             </div>
